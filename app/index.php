@@ -37,13 +37,7 @@ header("Content-Security-Policy: default-src 'self'; frame-ancestors 'none'; fon
         </div>
     </section>
 
-    <section id="about">
-        <div class="content">
-            <h2>About Us</h2>
-            <p>At XYZ Car Dealership, we offer a wide range of high-quality vehicles to suit your needs. Whether you're looking for a new car, a used car, or reliable service, we've got you covered.</p>
-        </div>
-    </section>
-
+    
     <section id="services">
         <div class="content">
             <h2>Our Services</h2>
@@ -55,7 +49,13 @@ header("Content-Security-Policy: default-src 'self'; frame-ancestors 'none'; fon
             </ul>
         </div>
     </section>
-
+    
+    <section id="about">
+        <div class="content">
+            <h2>About Us</h2>
+            <p>At XYZ Car Dealership, we offer a wide range of high-quality vehicles to suit your needs. Whether you're looking for a new car, a used car, or reliable service, we've got you covered.</p>
+        </div>
+    </section>
     
 
     

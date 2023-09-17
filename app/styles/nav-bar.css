@@ -1,0 +1,65 @@
+/* Navigation Bar Styles */
+nav {
+    background-color: #333; /* Dark background color */
+    color: #fff; /* White text color */
+    padding: 10px 0;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Style buttons for Catalog and About Us */
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff0000; /* Red background color */
+    color: #fff; /* White text color */
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #cc0000; /* Darker red on hover */
+}
+
+/* Style the "Login" and "Register" buttons differently */
+.login-button {
+    background-color: #007bff; /* Blue background color */
+}
+
+.register-button {
+    background-color: #28a745; /* Green background color */
+}
+
+/* Center-align the buttons vertically */
+.button-container {
+    display: flex;
+    align-items: center;
+}
+
+/* Add spacing between buttons */
+.button-container .button:not(:last-child) {
+    margin-right: 10px;
+}
+
+/* Logo Styles */
+.logo {
+    text-decoration: none;
+    color: #fff; /* White text color for the logo */
+}
+
+.logo img {
+    height: 50px; /* Set the height of the logo */
+}

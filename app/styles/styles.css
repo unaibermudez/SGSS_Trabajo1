@@ -31,8 +31,10 @@ nav ul li {
 
 /* Style the hero section */
 #hero {
-    /* background-image: url('/images/car-hero.jpg'); 
-    background-size: cover; */
+    background-image: url('/images/car.jpg'); 
+    background-size: cover; 
+    background-position: center;
+    opacity: 0.5;
     text-align: center;
     padding: 5rem 0;
     color: #fff;

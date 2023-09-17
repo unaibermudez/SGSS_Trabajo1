@@ -4,6 +4,7 @@ body, h1, h2, p, ul {
     padding: 0;
 }
 
+
 /* Set a background color and font for the entire page */
 body {
     font-family: 'Roboto', sans-serif;
@@ -34,9 +35,8 @@ nav ul li {
     background-image: url('/images/car.jpg'); 
     background-size: cover; 
     background-position: center;
-    opacity: 0.5;
     text-align: center;
-    padding: 5rem 0;
+    padding: 250px 0;
     color: #fff;
 }
 
@@ -53,7 +53,7 @@ nav ul li {
 .button {
     display: inline-block;
     padding: 1rem 2rem;
-    background-color: #333;
+    background-color: #1e63ec;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;

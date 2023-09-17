@@ -28,15 +28,15 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `usuarios` (
-  "id_usuario" int NOT NULL AUTO_INCREMENT,
-  "username" text NOT NULL
-  "password" text NOT NULL
-  "nombre_apellidos" text NOT NULL,
-  "dni" text NOT NULL,
-  "telf" int(9) NOT NULL,
-  "fecha_nacimiento" text NOT NULL,
-  "email" text NOT NULL,
-  PRIMARY KEY ("id_usuario")
+  `id_usuario` int NOT NULL AUTO_INCREMENT,
+  `username` text NOT NULL,
+  `password` text NOT NULL,
+  `nombre_apellidos` text NOT NULL,
+  `dni` text NOT NULL,
+  `telf` int(9) NOT NULL,
+  `fecha_nacimiento` text NOT NULL,
+  `email` text NOT NULL,
+  PRIMARY KEY (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
@@ -45,14 +45,14 @@ CREATE TABLE `usuarios` (
 --
 
 CREATE TABLE `coches` (
-  "id_coche" int NOT NULL AUTO_INCREMENT,
-  "modelo" text NOT NULL,
-  "anno" int NOT NULL,
-  "color" text NOT NULL,
-  "caballos" int NOT NULL,
-  "precio" float NOT NULL,
-  "id_duenno" int NOT NULL,
-  PRIMARY KEY ("id_coche")
+  `id_coche` int NOT NULL AUTO_INCREMENT,
+  `modelo` text NOT NULL,
+  `anno` int NOT NULL,
+  `color` text NOT NULL,
+  `caballos` int NOT NULL,
+  `precio` float NOT NULL,
+  `id_duenno` int NOT NULL,
+  PRIMARY KEY (`id_coche`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 --
 -- Volcado de datos para la tabla `usuarios`

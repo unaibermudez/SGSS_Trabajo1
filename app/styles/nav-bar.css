@@ -1,39 +1,45 @@
-/* Navbar styles */
-#top_bar {
-    background: #f0f0f0; /*  background color */
-    width: 100%;
-    height: auto; /* Use 'auto' for height */
-    list-style-type: none;
+/* Reset some default styles */
+body, ul, li, a {
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    position: fixed;
-    top: 0; /* Stick to the top of the viewport */
-    z-index: 1000; /* Ensure it's above other content */
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
-    display: flex; /* Use flexbox to align the entire nav element */
-    align-items: center; /* Center align its contents vertically */
-}
-
-.bar_elm {
-    padding: 1rem 1.5rem; /* Increase left and right padding for spacing */
-}
-
-.bar_elm a {
+    list-style: none;
     text-decoration: none;
-    color: #151515; /* White text color for menu items */
-    font-weight: bold; /* Make text bold for menu items */
-    transition: color 0.3s; /* Smooth color transition on hover */
 }
 
-.bar_elm a:hover {
-    color: #ff9900; /* Change text color on hover (e.g., orange) */
+/* Navigation Bar Styles */
+.navbar {
+    background-color: #333;
+    color: #fff;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    position: fixed; /* Make the navigation bar fixed at the top */
+    top: 0; /* Position it at the top of the viewport */
+    width: 100%; /* Make it full width */
+    z-index: 1000; /* Ensure it's above other content */
 }
 
-/* Right-aligned menu items */
-.bar_elm.right {
+.left-elements {
+    display: flex;
+    align-items: center;
+}
+
+.right-elements ul {
+    display: flex;
+    align-items: center;
     margin-left: auto; /* Push right-aligned elements to the right edge */
-    padding: 0.5rem;
+}
+
+.menu li {
+    margin-right: 30px;
+}
+
+.menu li:last-child {
+    margin-right: 50px;
 }
 
 /* Logo Styles */
@@ -44,6 +50,16 @@
 }
 
 .logo img {
-    height: 50px; /* Set the height of the logo */
+    height: 60px; /* Increase the height of the logo */
 }
 
+.menu a {
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px; /* Increase the font size */
+    transition: color 0.3s;
+}
+
+.menu a:hover {
+    color: #1e63ec;
+}

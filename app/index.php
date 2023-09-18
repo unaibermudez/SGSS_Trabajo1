@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Your existing meta tags and headers -->
-    <!-- ... -->
-
+    <title>MotorCity</title>
     <!-- Include your stylesheets -->
     <link rel="stylesheet" href="/styles/styles.css">
-    <link rel="stylesheet" href="/styles/nav-bar.css">
-
+    
     <!-- Include any additional fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,7 +25,6 @@
             <a href="/inventory" class="button">Explora nuestro catálogo</a>
         </div>
     </section>
-
     
     <section id="services">
         <div class="content">
@@ -49,7 +45,6 @@
         </div>
     </section>
     
-
     
 </body>
 </html>

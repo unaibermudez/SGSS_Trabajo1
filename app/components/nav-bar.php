@@ -14,7 +14,7 @@
     </div>
     <div class="right-elements">
         <ul class="menu">
-            <li><a href="log_in.php" >Iniciar Sesión</a></li>
+            <li><a href="login.php" >Iniciar Sesión</a></li>
             <li><a href="register.php" >Registrarse</a></li>  
 
         </ul>

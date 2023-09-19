@@ -8,7 +8,7 @@ body, ul, li, a {
 
 /* Navigation Bar Styles */
 .navbar {
-    background-color: #333;
+    background-color: #00072d;
     color: #fff;
     height: auto;
     display: flex;
@@ -36,6 +36,7 @@ body, ul, li, a {
 
 .menu li {
     margin-right: 30px;
+    display: inline-block;
 }
 
 .menu li:last-child {

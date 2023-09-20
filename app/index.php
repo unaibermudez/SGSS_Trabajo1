@@ -12,7 +12,7 @@
 </head>
 <body>
    
-    
+    <!-- hola-->
     <!-- Incluimos la barra del menú -->
     <?php require_once("components/nav-bar.php")?>
 
@@ -22,7 +22,7 @@
         <div id="hero-container">
             <h1>Welcome to MotorCity Dealership</h1>
             <p>Your Destination for Quality Cars</p>
-            <a href="/inventory" class="button">Explora nuestro catálogo</a>
+            <a href="/catalogo.php" class="button">Explora nuestro catálogo</a>
         </div>
     </section>
     

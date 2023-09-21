@@ -12,7 +12,7 @@
 </head>
 <body>
    
-    <!-- hola-->
+    <!-- Diego-->
     <!-- Incluimos la barra del menú -->
     <?php require_once("components/nav-bar.php")?>
 

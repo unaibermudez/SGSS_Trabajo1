@@ -33,7 +33,7 @@ CREATE TABLE `usuarios` (
   `nombre_apellidos` text NOT NULL,
   `dni` text NOT NULL,
   `telf` int(9) NOT NULL,
-  `fecha_nacimiento` text NOT NULL,
+  `fecha_nacimiento` date NOT NULL,
   `email` text NOT NULL,
   `password` text NOT NULL,
   PRIMARY KEY (`id_usuario`)
@@ -46,17 +46,33 @@ CREATE TABLE `usuarios` (
 
 CREATE TABLE `coches` (
   `id_coche` int NOT NULL AUTO_INCREMENT,
+  `marca` text NOT NULL,
   `modelo` text NOT NULL,
   `anno` int NOT NULL,
   `color` text NOT NULL,
   `caballos` int NOT NULL,
+  `combustible` text NOT NULL,
   `precio` float NOT NULL,
-  `id_duenno` int NOT NULL,
+  `id_dueno` int NOT NULL,
   PRIMARY KEY (`id_coche`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Volcado de datos para la tabla `usuarios`
 --
+
+INSERT INTO `usuarios` (`id_usuario`, `username`, `nombre_apellidos`, `dni`, `telf`, `fecha_nacimiento`, `email`, `password`) VALUES
+('0', 'admin', 'unai bermudez', '00000000A', '777777777', '2002-09-29', 'admin@gmail.com', 'test');
+
+
+
+
+--
+-- Volcado de datos para la tabla `coches`
+--
+
+INSERT INTO `coches` (`marca`, `modelo`, `anno`, `color`, `caballos`, `combustible`, `precio`, `id_dueno`) VALUES
+("Dacia", "Sandero", "2023", "negro", "91", "gasolina", "14720", "0");
 
 
 

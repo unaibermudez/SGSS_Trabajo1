@@ -13,6 +13,7 @@
     <?php require_once("components/nav-bar.php")?>
     <div class="login-container">
         <h1>Iniciar Sesión</h1>
+        
         <form action="process_login.php" method="POST">
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>

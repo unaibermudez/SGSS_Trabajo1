@@ -1,42 +1,37 @@
 <?php
-session_start();
+    session_start();
 
-header('Content-Type: text/html; charset=utf-8');
-require('Database.php');
-$db = Database::getInstance();
-
-if(isset($_SESSION['user'])){
-    // Estamos loggeados -> volvemos a la página principal
-    header("Location:index.php");
-
-}else if(isset($_POST['register'])){
-    unset($_POST['register']);
-
-    if( strcmp($_POST['password'], $_POST['confirmPassword']) == 0){
-        $datos['username'] = $_POST['username'];
-        $datos['nombre_apellidos'] = $_POST['nombre_apellidos'];
-        $datos['dni'] = $_POST['dni'];
-        $datos['telf'] = $_POST['telf'];
-        $datos['fecha_nacimiento'] = $_POST['fecha_nacimiento'];
-        $datos['email'] = $_POST['email'];
-        $datos['password'] = $_POST['password'];
-
-        $error = $db->registrar_usuario($datos);
-
-        if(!isset($error)){
-            header('Location:login.php');
+    header('Content-Type: text/html; charset=utf-8');
+    require('Database.php');
+    $db = Database::getInstance();
+    
+    if(isset($_POST['submit'])){
+        unset($_POST['submit']);
+    
+        if(strcmp($_POST['password'], $_POST['password2']) == 0){
+            $datos['username'] = $_POST['username'];
+            $datos['nombre_apellidos'] = $_POST['nombre_apellidos'];
+            $datos['dni'] = $_POST['dni'];
+            $datos['telf'] = $_POST['telf'];
+            $datos['fecha_nacimiento'] = $_POST['fecha_nacimiento'];
+            $datos['email'] = $_POST['email'];
+            $datos['password'] = $_POST['password'];
+    
+            $error = $db->registrar_usuario($datos);
+    
+            if(!isset($error)){
+                header('Location:login.php');
+            }
+    
+            // Hacemos algo con el error
+            echo $error;
+    
+        }else{
+            echo "ERROR: las contraseñas no coinciden";
         }
-
-        // Hacemos algo con el error
-        echo $error;
-
-    }else{
-        echo "ERROR: las contraseñas no coinciden";
     }
-
-
-}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,46 +43,66 @@ if(isset($_SESSION['user'])){
 <body>
     <!-- Incluimos la barra del menú -->
     <?php require_once("components/nav-bar.php")?>
+
     <div class="register-container">
         <h1>Registrarse</h1>
-        <form id="form" action="register.php" method="POST">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-            <span id=errorUsername style="color:red"></span>
 
-            <label for="fullName">Nombre y Apellido:</label>
-            <input type="text" id="nombre_apellidos" name="nombre_apellidos" required>
-            <span id=errorNombreApellido style="color:red"></span>
+        <form method="POST" action="" onsubmit="return validar_y_enviar_datos()">
 
-            <label for="dni">DNI:</label>
-            <input type="text" id="dni" name="dni" required>
-            <span id=errorDni style="color:red"></span>
+            <div class="form-item">
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" required>
+                <span id="errorUsername" class="error"></span>
+            </div>
 
-            <label for="phone">Teléfono:</label>
-            <input type="text" id="telf" name="telf" required>
-            <span id=errorTelf style="color:red"></span>
+            <div class="form-item">
+                <label for="nombre_apellidos">Nombre y Apellidos:</label>
+                <input type="text" name="nombre_apellidos" id="nombre_apellidos" required>
+                <span id="errorNombreApellido" class="error"></span>
+            </div>
 
-            <label for="birthdate">Fecha de nacimiento:</label>
-            <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+            <div class="form-item">
+                <label for="dni">DNI:</label>
+                <input type="text" name="dni" id="dni" required>
+                <span id="errorDNI" class="error"></span>
+            </div>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <span id=errorMail style="color:red"></span>
+            <div class="form-item">
+                <label for="telf">Teléfono:</label>
+                <input type="text" name="telf" id="telf" required>
+                <span id="errorTelf" class="error"></span>
+            </div>
 
-            <label for="password">Nueva contraseña:</label>
-            <input type="password" id="password" name="password" required>
-            <span id=errorPassword style="color:red"></span>
+            <div class="form-item">
+                <label for="fecha_nacimiento">Fecha de Nacimiento:</label>
+                <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" required>
+            </div>
 
-            <label for="confirmPassword">Repetir contraseña:</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" required>
-            <span id=errorPassword2 style="color:red"></span>
+            <div class="form-item">
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" required>
+                <span id="errorMail" class="error"></span>
+            </div>
 
-            <button type="submit">Register</button>
+            <div class="form-item">
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" required>
+                <span id="errorPassword" class="error"></span>
+            </div>
+
+            <div class="form-item">
+                <label for="password2">Confirm password:</label>
+                <input type="password" name="password2" id="password2" required>
+            </div>
+
+            <button id="button" type="submit" name="submit" onclick="validar_y_enviar_datos()">Register</button>
+
         </form>
-        <p>Already have an account? <a href="login.php">Login</a></p>
 
-        <script defer src="scripts/Validador.js"></script>
-        <script defer src="scripts/forms.js"></script>
+        <p>Already have an account? <a href="login.php">Login</a></p>
     </div>
+    <script defer src="scripts/Validador.js"></script>
+    <script defer src="scripts/forms.js"></script>
 </body>
 </html>
+

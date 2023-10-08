@@ -23,23 +23,6 @@ class Database{
 
     }
 
-    private function send_query_db($select_instr){
-        // PRE: Recibe una cadena de texto
-        // POST: Comprueba si es una consulta SQL y la realiza a la base de
-        // datos. Si recibe multiples valores (SELECT) devuelve un array.
-        // Si no (UPDATE), devuelve un booleano.
-        // TODO: Comprobar que la instrucción no es una inyección SQL
-
-        $query = mysqli_query($this->conn, $select_instr)
-            or die (mysqli_error($this->conn));
-
-        if(is_bool($query)){
-            return $query;
-        }
-
-        return mysqli_fetch_array($query);
-    }
-
     public static function getInstance(){
         if(!isset(self::$instance)){
             self::$instance = new database();
@@ -90,59 +73,9 @@ class Database{
 
         }
 
-        $sql_ins = "INSERT INTO usuarios (`username`, `nombre_apellidos`, `dni`, `telf`, `fecha_nacimiento`, `email`, `password`) VALUES 
-        ('{$datos['username']}', '{$datos['nombre_apellidos']}', '{$datos['dni']}', '{$datos['telf']}', '{$datos['fecha_nacimiento']}', '{$datos['email']}', '{$datos['password']}')";
+        $sql_ins = "INSERT INTO usuarios (username, nombre_apellidos, dni, telf, fecha_nacimiento, email, password) VALUES ('{$datos['username']}', '{$datos['nombre_apellidos']}', '{$datos['dni']}', '{$datos['telf']}', '{$datos['fecha_nacimiento']}', '{$datos['email']}', '{$datos['password']}')";
+      
         $res = $this->send_query_db($sql_ins);
-    }
-
-    public function registrar_coche($datos){
-        $id_usuario_actual = $this->send_query_db("SELECT id_usuario FROM usuarios WHERE username='" . $user . "' ");
-        $sql_ins = "INSERT INTO coches (`marca`, `modelo`, `anno`, `color`, `caballos`, `combustible`, `precio`, `id_dueno`)VALUES 
-        ('{$datos['marca']}', '{$datos['modelo']}', '{$datos['anno']}', '{$datos['color']}',  '{$datos['caballos']}',  '{$datos['combustible']}',  '{$datos['precio']}', {$id_usuario_actual})";
-        $res = $this->send_query_db($sql_ins);
-    }
-
-    public function obtener_muffins(){
-        $sql_ins="SELECT * FROM muffins";
-
-        $query = mysqli_query($this->conn, $sql_ins)
-            or die (mysqli_error($this->conn));
-        return $query;
-
-    }
-
-    public function incrementarLikes($datos){
-        $sql_ins= "UPDATE muffins SET likes=likes+1 WHERE id='{$datos["id"]}'";
-        $res = $this->send_query_db($sql_ins);
-    }
-
-    public function obtener_datos_muffin($datos){
-        $sql_ins= "SELECT * FROM muffins WHERE id=$datos";
-        $res = $this->send_query_db($sql_ins);
-        return $res;
-    }
-
-   public function modificar_datos_muffin($datos){
-        $sql_params="likes='{$datos['likes']}',imagen='{$datos['imagen']}',titulo='{$datos['titulo']}',descripcion='{$datos['descripcion']}',user_prop='{$datos['user_prop']}'";
-        $sql_ins= "UPDATE muffins SET {$sql_params} WHERE id='{$datos['id']}'";
-        $res = $this->send_query_db($sql_ins);
-   }
-
-   public function eliminar_muffin($id){
-        $sql_ins= "DELETE FROM muffins WHERE id=$id";
-        $res = $this->send_query_db($sql_ins);
-   }
-    
-
-
-    
-
-    public function obtener_datos_usuario($user){
-        // PRE: El usuario está registrado y loggeado
-        // POST: Sus datos personales exceptuando la contraseña actual
-        
-        $datos = $this->send_query_db("SELECT username, nombre_apellidos, DNI, telf, email, fecha from usuarios WHERE username='{$user}'");
-        return $datos;
     }
 
     private function existe_nombre_usuario($username){
@@ -154,66 +87,21 @@ class Database{
         return false;
     }
 
-    public function eliminar_usuario($user){
-        $res = $this->send_query_db("DELETE FROM usuarios WHERE username='{$user}'");
+    private function send_query_db($select_instr){
+        // PRE: Recibe una cadena de texto
+        // POST: Comprueba si es una consulta SQL y la realiza a la base de
+        // datos. Si recibe multiples valores (SELECT) devuelve un array.
+        // Si no (UPDATE), devuelve un booleano.
+        // TODO: Comprobar que la instrucción no es una inyección SQL
 
-        if(!$res){
-            return "ERROR: no se pudo hacer el DELETE de {$user}";
-        }
-    }
+        $query = mysqli_query($this->conn, $select_instr)
+            or die (mysqli_error($this->conn));
 
-    public function modificar_datos_usuario($user, $datos){
-        // PRE: El usuario está registrado y loggeado 
-        // y datos: $new_usr, $new_pass, $new_nom_ape, $new_DNI, $new_telf, $new_email
-        // POST: Se han modificado los datos del usuario y se devuelve el
-        // error
-
-        // Validamos los datos 
-        if(!Validador::val_DNI($datos['DNI'])){
-            return "ERROR: el DNI introducido no tiene el formato correcto";
+        if(is_bool($query)){
+            return $query;
         }
 
-        if(!Validador::val_email($datos['email'])){
-            return "ERROR: el email introducido no tiene el formato correcto -> {$datos['email']}";
-        }
-
-        if(!Validador::val_telf($datos['telf'])){
-            return "ERROR: el teléfono introducido no tiene el formato correcto";
-        }
-
-        if(!Validador::val_date($datos['date'])){
-            return "ERROR: el teléfono introducido no tiene el formato correcto";
-        }
-
-        // Comprobar que el nombre de usuario es único
-        if(strcmp($datos['username'], "") != 0){
-            // El username no es un string vacío
-            if($user==$datos['username']){
-                if(strcmp($user, $datos['username']) != 0 && $this->existe_nombre_usuario($datos['username'])){
-                    return "ERROR: el nombre de usuario introducido ya está registrado";
-                } 
-            }
-        }
-        else{
-            return "ERROR: el nombre de usuario no puede ser una cadena vacía";
-
-        }
-
-        $sql_params = "username='{$datos['username']}', DNI='{$datos['DNI']}', telf='{$datos['telf']}', email='{$datos['email']}', fecha='{$datos['date']}'";
-
-        // Si no hemos introducido una contraseña valida, mantenemos la
-        // anterior
-        if(isset($datos['password']) && strcmp($datos['password'], "") != 0){
-            $sql_params = $sql_params . ", password='{$datos['password']}'";
-        }
-
-        // Enviamos una instruccion a la base de datos para modificarlos
-        $sql_ins = "UPDATE usuarios SET {$sql_params}  WHERE username='{$user}'";
-        $res = $this->send_query_db($sql_ins);
-
-        if(!$res){
-            return "ERROR: el UPDATE no se pudo realizar";
-        }
+        return mysqli_fetch_array($query);
     }
 
 }

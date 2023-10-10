@@ -19,6 +19,8 @@
             // Inicio de sesión exitoso, redireccionar o mostrar un mensaje de éxito
             header('Location: index.php'); // Reemplaza 'dashboard.php' con la página a la que deseas redireccionar
             $_SESSION["user"] = "yes";
+            $_SESSION["username"] = $username; // Configura el nombre del usuario en una variable de sesión
+
             exit;
         } else {
             // Inicio de sesión fallido, mostrar un mensaje de error

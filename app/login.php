@@ -20,6 +20,7 @@
         } else {
             // Inicio de sesión fallido, mostrar un mensaje de error
             echo "Inicio de sesión fallido. Verifica tus credenciales.";
+            echo $passcif;
         }
     }
 ?>
@@ -36,7 +37,7 @@
 <body>
 
     <!-- Incluimos la barra del menú -->
-    <?php require_once("components/nav-bar.php")?>
+    <?php //require_once("components/nav-bar.php")?>
     <div class="login-container">
         <h1>Iniciar Sesión</h1>
         

@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
    if(isset($_POST['submit'])){
         // Incluir el archivo de la clase Database
         require('Database.php');
@@ -16,7 +18,12 @@
         if($inicio_sesion_exitoso){
             // Inicio de sesión exitoso, redireccionar o mostrar un mensaje de éxito
             header('Location: index.php'); // Reemplaza 'dashboard.php' con la página a la que deseas redireccionar
+            $_SESSION["user"] = "yes";
             exit;
+        } else {
+            // Inicio de sesión fallido, mostrar un mensaje de error
+            
+        }
     }
 ?>
 

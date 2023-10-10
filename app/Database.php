@@ -34,10 +34,14 @@ class Database{
     public function comprobar_identidad($user, $pass){
         // TODO: Validar datos antes de realizar peticiones
         
-        $query = $this->send_query_db("SELECT password FROM usuarios WHERE username='" . $user . "' ");
+        $sql = "SELECT password FROM usuarios WHERE username='$user' ";
+        $result = mysqli_query($conn, $sql);
         $identified = false;
+        $nombre = mysqli_fetch_array($result, MYSQLI_ASSOC);
+        echo $nombre["username"];
+        echo $nombre["password"];
 
-        if(isset($query['password']) and strcmp($pass, $query['password']) == 0){
+        if(isset($nombre['password']) and strcmp($pass, $nombre['password']) == 0){
             $identified = true;
         }
 

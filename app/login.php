@@ -1,22 +1,28 @@
 <?php
-    session_start();
-    echo "Hola";
-    header('Content-Type: text/html; charset=utf-8');
     require('Database.php');
     $db = Database::getInstance();
-
-    if(isset($_POST['submit'])){
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-
-        $error = $db->comprobar_identidad($username, $password);
-
-        if(!isset($error)){
-            header('Location:about.php');
-        }else{
-            echo "Contraseña incorrecta";
-        }
-    }
+   
+    if (isset($_POST["submit"])) {
+      $username = $_POST["username"];
+      $password = $_POST["password"];
+       $sql = "SELECT * FROM usuarios WHERE username = '$username'";
+       $result = mysqli_query($conn, $sql);
+       echo $result;
+       $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+       if ($user) {
+           if (strcmp($password, $user["password"]) == 0) {
+                echo "Hola";
+               session_start();
+              // $_SESSION["user"] = "yes";
+               header("Location: about.php");
+               die();
+           }else{
+               echo "<div class='alert alert-danger'>Password does not match</div>";
+           }
+       }else{
+           echo "<div class='alert alert-danger'>Email does not match</div>";
+       }
+   }
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +37,7 @@
 <body>
 
     <!-- Incluimos la barra del menú -->
-    <?php require_once("components/nav-bar.php")?>
+    <?php //require_once("components/nav-bar.php")?>
     <div class="login-container">
         <h1>Iniciar Sesión</h1>
         

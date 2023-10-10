@@ -1,0 +1,13 @@
+peio:
+-visualizar catalogo
+    -editar datos y borrar coches
+    -añadir coches
+
+yo:
+-perfil con datos personales
+-editar datos personales
+
+diego:
+-nav_bar dinamica
+-arreglar landing
+-README.md

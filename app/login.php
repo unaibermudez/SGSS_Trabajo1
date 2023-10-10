@@ -1,3 +1,17 @@
+<?php
+    session_start();
+
+    header('Content-Type: text/html; charset=utf-8');
+    require('Database.php');
+    $db = Database::getInstance();
+
+    if(isset($_POST['submit'])){
+        unset($_POST['submit']);
+
+        
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

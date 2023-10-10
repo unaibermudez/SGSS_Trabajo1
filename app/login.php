@@ -1,28 +1,26 @@
 <?php
+    // Verificar si se ha enviado el formulario
+if(isset($_POST['submit'])){
+    // Incluir el archivo de la clase Database
     require('Database.php');
+
+    // Recoger los valores del formulario
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Crear una instancia de la clase Database
     $db = Database::getInstance();
-   
-    if (isset($_POST["submit"])) {
-      $username = $_POST["username"];
-      $password = $_POST["password"];
-       $sql = "SELECT * FROM usuarios WHERE username = '$username'";
-       $result = mysqli_query($conn, $sql);
-       echo $result;
-       $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
-       if ($user) {
-           if (strcmp($password, $user["password"]) == 0) {
-                echo "Hola";
-               session_start();
-              // $_SESSION["user"] = "yes";
-               header("Location: about.php");
-               die();
-           }else{
-               echo "<div class='alert alert-danger'>Password does not match</div>";
-           }
-       }else{
-           echo "<div class='alert alert-danger'>Email does not match</div>";
-       }
-   }
+
+    // Llamar al método para iniciar sesión
+    if($db->comprobar_identidad($username, $password)){
+        // Inicio de sesión exitoso, redireccionar o mostrar un mensaje de éxito
+        header('Location: index.php'); // Reemplaza 'dashboard.php' con la página a la que deseas redireccionar
+        exit;
+    } else {
+        // Inicio de sesión fallido, mostrar un mensaje de error
+        echo "Inicio de sesión fallido. Verifica tus credenciales.";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +39,7 @@
     <div class="login-container">
         <h1>Iniciar Sesión</h1>
         
-        <form action="" method="POST">
+        <form action="index.php" method="POST">
             <label for="username">Nombre de Usuario:</label>
             <input type="username" id="username" name="username" required>
 

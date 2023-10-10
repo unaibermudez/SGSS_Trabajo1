@@ -1,14 +1,21 @@
 <?php
     session_start();
-
+    echo "Hola";
     header('Content-Type: text/html; charset=utf-8');
     require('Database.php');
     $db = Database::getInstance();
 
     if(isset($_POST['submit'])){
-        unset($_POST['submit']);
+        $username = $_POST['username'];
+        $password = $_POST['password'];
 
-        
+        $error = $db->comprobar_identidad($username, $password);
+
+        if(!isset($error)){
+            header('Location:about.php');
+        }else{
+            echo "Contraseña incorrecta";
+        }
     }
 ?>
 
@@ -28,14 +35,14 @@
     <div class="login-container">
         <h1>Iniciar Sesión</h1>
         
-        <form action="process_login.php" method="POST">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+        <form action="" method="POST">
+            <label for="username">Nombre de Usuario:</label>
+            <input type="username" id="username" name="username" required>
 
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
 
-            <button type="submit">Login</button>
+            <button type="submit" name="submit">Login</button>
         </form>
         <p>Don't have an account? <a href="register.php">Register</a></p>
     </div>

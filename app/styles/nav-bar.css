@@ -64,3 +64,19 @@ body, ul, li, a {
 .menu a:hover {
     color: #1e63ec;
 }
+
+.menu .user-info {
+    margin-right: 30px;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.menu .user-info:last-child {
+    margin-right: 50px;
+}
+
+.menu .user-info:hover {
+    color: #1e63ec;
+}
+

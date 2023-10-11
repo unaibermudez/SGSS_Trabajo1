@@ -1,0 +1,59 @@
+/* Reset some default styles */
+body, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set a background color and font for the entire page */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Style the profile container */
+.profile-container {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    margin: 100px auto;
+    padding: 20px;
+    text-align: center;
+    width: 350px;
+    margin-top: 150px;
+}
+
+.profile-container h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.profile-info {
+    text-align: left;
+    margin: 20px 0;
+}
+
+.profile-info p {
+    margin-bottom: 10px;
+}
+
+.profile-info strong {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.logout-button {
+    display: block;
+    background-color: #1e63ec;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.logout-button:hover {
+    background-color: #153b87;
+}

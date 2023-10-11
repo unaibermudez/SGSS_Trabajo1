@@ -8,10 +8,11 @@
     // Verifica si el usuario ha iniciado sesión
     if (isset($_SESSION["user"]) && $_SESSION["user"] === "yes") {
         $usuario_iniciado = true;
-        $id = $_SESSION['id_usuario'];
-
-        $datos = $db->obtener_datos_usuario($id);
+        
     }
+
+    $id = $_SESSION['username'];
+     $datos = $db->obtener_datos_usuario($id);
 ?>
 
 <!DOCTYPE html>

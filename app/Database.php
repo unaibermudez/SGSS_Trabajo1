@@ -55,10 +55,10 @@ class Database{
         }
     }
 
-    public function obtener_datos_usuario($user_id){
+    public function obtener_datos_usuario($user){
         $datos_usuario = array(); // Creamos un arreglo para almacenar los datos del usuario
     
-        $sql = "SELECT * FROM usuarios WHERE id_usuario='$user_id'";
+        $sql = "SELECT * FROM usuarios WHERE username='$user'";
         $result = mysqli_query($this->conn, $sql);
     
         if ($result) {

@@ -34,18 +34,25 @@ class Database{
     public function comprobar_identidad($user, $pass){
         // TODO: Validar datos antes de realizar peticiones
         
-        $sql = "SELECT password FROM usuarios WHERE username='$user' ";
-        $result = mysqli_query($conn, $sql);
-        $identified = false;
-        $nombre = mysqli_fetch_array($result, MYSQLI_ASSOC);
-        echo $nombre["username"];
-        echo $nombre["password"];
+        $sql = "SELECT password FROM usuarios WHERE username='$user'";
+        $result = mysqli_query($this->conn, $sql);
 
-        if(isset($nombre['password']) and strcmp($pass, $nombre['password']) == 0){
-            $identified = true;
+        if (!$result) {
+            die("Error en la consulta: " . mysqli_error($this->conn));
         }
 
-        return $identified;
+        $row = mysqli_fetch_assoc($result);
+
+        if (!$row) {
+            return false; // El usuario no existe
+        }
+
+        // Luego, comparamos la contraseña proporcionada con la contraseña almacenada en la base de datos
+        if (password_verify($pass, $row['password'])) {
+            return true; // Contraseña válida, inicio de sesión exitoso
+        } else {
+            return false; // Contraseña incorrecta
+        }
     }
 
     public function registrar_usuario($datos){

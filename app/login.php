@@ -1,28 +1,31 @@
 <?php
+
+if (isset($_POST['submit'])) {
+    // Incluir el archivo de la clase Database
     require('Database.php');
+
+    // Recoger los valores del formulario
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Crear una instancia de la clase Database
     $db = Database::getInstance();
-   
-    if (isset($_POST["submit"])) {
-      $username = $_POST["username"];
-      $password = $_POST["password"];
-       $sql = "SELECT * FROM usuarios WHERE username = '$username'";
-       $result = mysqli_query($conn, $sql);
-       echo $result;
-       $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
-       if ($user) {
-           if (strcmp($password, $user["password"]) == 0) {
-                echo "Hola";
-               session_start();
-              // $_SESSION["user"] = "yes";
-               header("Location: about.php");
-               die();
-           }else{
-               echo "<div class='alert alert-danger'>Password does not match</div>";
-           }
-       }else{
-           echo "<div class='alert alert-danger'>Email does not match</div>";
-       }
-   }
+
+    // Llamar al método para comprobar la identidad
+    $inicio_sesion_exitoso = $db->comprobar_identidad($username, $password);
+
+    if ($inicio_sesion_exitoso) {
+        // Inicio de sesión exitoso, redireccionar o mostrar un mensaje de éxito
+        session_start();
+        header('Location: index.php'); // Reemplaza 'dashboard.php' con la página a la que deseas redireccionar
+        $_SESSION["user"] = "yes";
+        $_SESSION["username"] = $username; // Configura el nombre del usuario en una variable de sesión
+        exit;
+    } else {
+        // Si la sesión no se inicia correctamente, muestra un mensaje de alerta
+        echo '<script>alert("Usuario y/o contraseña incorrectos")</script>';
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -32,25 +35,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - MotorCity Dealership</title>
     <link rel="stylesheet" href="/styles/login.css"> <!-- Include your CSS file for styling -->
-    
 </head>
 <body>
 
     <!-- Incluimos la barra del menú -->
-    <?php //require_once("components/nav-bar.php")?>
+    <?php require_once("components/nav-bar.php")?>
     <div class="login-container">
         <h1>Iniciar Sesión</h1>
         
-        <form action="" method="POST">
+        <form action="" method="POST" onsubmit="return iniciar_sesion()">
             <label for="username">Nombre de Usuario:</label>
             <input type="username" id="username" name="username" required>
 
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
-
-            <button type="submit" name="submit">Login</button>
+            
+            <button id="button" type="submit" name="submit">Login</button>
         </form>
+       
         <p>Don't have an account? <a href="register.php">Register</a></p>
     </div>
+
 </body>
 </html>
+
+
+

@@ -15,7 +15,9 @@
             $datos['telf'] = $_POST['telf'];
             $datos['fecha_nacimiento'] = $_POST['fecha_nacimiento'];
             $datos['email'] = $_POST['email'];
-            $datos['password'] = $_POST['password'];
+            $datos['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            // Luego, almacena $password en la base de datos
+            
     
             $error = $db->registrar_usuario($datos);
     

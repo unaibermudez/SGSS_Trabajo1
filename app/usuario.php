@@ -12,13 +12,13 @@
     }
 
     $id = $_SESSION['username'];
-     $datos = $db->obtener_datos_usuario($id);
+    $datos = $db->obtener_datos_usuario($id);
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Datos del Usuario</title>
+    <title>User - MotorCity Dealership</title>
     <link rel="stylesheet" href="/styles/usuario.css"> <!-- Include your CSS file -->
     <link rel="stylesheet" href="/styles/nav-bar.css">
 </head>
@@ -37,6 +37,11 @@
                 <p>Teléfono: <?php echo $datos['telf']; ?></p>
                 <p>Fecha de Nacimiento: <?php echo $datos['fecha_nacimiento']; ?></p>
                 <p>Email: <?php echo $datos['email']; ?></p>
+                <p></p>
+                <form action="modificar.php" method="POST">
+                    <button id="button" type="submit" name="modificar">Modificar Datos</button>
+                </form>
+                <p></p>
                 <form action="logout.php" method="post">
                     <button id="button" type="submit" name="submit">Cerrar Sesion</button>
                 </form>            

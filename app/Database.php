@@ -55,6 +55,54 @@ class Database{
         }
     }
 
+    public function modificar_datos_usuario($datos, $id) {
+    // Verifica si el arreglo de datos no está vacío y que el ID sea válido
+    if (!empty($datos) && is_numeric($id) && $id > 0) {
+        // Obtiene los datos actuales del usuario
+        $datos_actuales = $this->obtener_datos_usuario($id);
+
+        // Comprueba cada campo del arreglo y actualiza la base de datos solo si el campo no está vacío
+        $updates = array();
+
+        if (!empty($datos['username']) && $datos['username'] !== $datos_actuales['username']) {
+            $updates[] = "username = '{$datos['username']}'";
+        }
+
+        if (!empty($datos['nombre_apellidos']) && $datos['nombre_apellidos'] !== $datos_actuales['nombre_apellidos']) {
+            $updates[] = "nombre_apellidos = '{$datos['nombre_apellidos']}'";
+        }
+
+        if (!empty($datos['dni']) && $datos['dni'] !== $datos_actuales['dni']) {
+            $updates[] = "dni = '{$datos['dni']}'";
+        }
+
+        if (!empty($datos['telf']) && $datos['telf'] !== $datos_actuales['telf']) {
+            $updates[] = "telf = '{$datos['telf']}'";
+        }
+
+        if (!empty($datos['fecha_nacimiento']) && $datos['fecha_nacimiento'] !== $datos_actuales['fecha_nacimiento']) {
+            $updates[] = "fecha_nacimiento = '{$datos['fecha_nacimiento']}'";
+        }
+
+        if (!empty($datos['email']) && $datos['email'] !== $datos_actuales['email']) {
+            $updates[] = "email = '{$datos['email']}'";
+        }
+
+        if (!empty($datos['password'])) {
+            $hashed_password = password_hash($datos['password'], PASSWORD_DEFAULT);
+            $updates[] = "password = '$hashed_password'";
+        }
+
+        // Si hay campos para actualizar, construye la consulta SQL
+        if (!empty($updates)) {
+            $sql = "UPDATE usuarios SET " . implode(", ", $updates) . "WHERE id_usuario= $id";
+            mysqli_query($this->conn, $sql);
+        }
+    }
+}
+
+    
+
     public function obtener_datos_usuario($user){
         $datos_usuario = array(); // Creamos un arreglo para almacenar los datos del usuario
     

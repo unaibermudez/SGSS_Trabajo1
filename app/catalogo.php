@@ -15,36 +15,48 @@
     <header>
         <h1>Catálogo de Coches</h1>
     </header>
+    <?php
+    // Incluir el archivo de la clase Database
+    require('Database.php');
 
-     <!-- Car Cards Section -->
-    <section class="car-cards">
-        <!-- Car Card 1 -->
-        <div class="car-card">
-            <div class="car-image">
-                <img src="/images/car1.jpg" alt="Car 1">
-            </div>
-            <div class="car-info">
-                <div class="car-title">
-                    <h2> Nombre & Año</h2>
-                </div>
-                <div class="car-price">
-                    <p>25,000 €</p>
-                </div>
-                <div class="car-details">
-                    <table>
-                        <tr>
-                            <td>150 CV</td>
-                            <td>10,000 km</td>
-                            <td>Gasolina</td>
-                            <td>Manual</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
+    // Crear una instancia de la clase Database
+    $db = Database::getInstance(); 
+    $result= $db->obtener_coches();
 
-        
-    </section>
+    if ($result->num_rows > 0) {
+        // Recorre los resultados y muestra las tarjetas de coches
+        while ($row = $result->fetch_assoc()) {
+            echo '<section class="car-cards">';
+            echo '    <div class="car-card">';
+            echo '        <div class="car-image">';
+            echo '            <img src="' . $row["imagen"] . '" alt="' . $row["nombre"] . '">';
+            echo '        </div>';
+            echo '        <div class="car-info">';
+            echo '            <div class="car-title">';
+            echo '                <h2>' . $row["marca"] . ' ' . $row["modelo"] . '('. $row['anno'] . ')'. '</h2>';
+            echo '            </div>';
+            echo '            <div class="car-price">';
+            echo '                <p>' . $row["precio"] . ' €</p>';
+            echo '            </div>';
+            echo '            <div class="car-details">';
+            echo '                <table>';
+            echo '                    <tr>';
+            echo '                        <td>' . $row["caballos"] . ' CV</td>';
+            echo '                        <td>' . $row["kilometros"] . ' km</td>';
+            echo '                        <td>' . $row["combustible"] . '</td>';
+            echo '                        <td>' . $row["cambio"] . '</td>';
+            echo '                    </tr>';
+            echo '                </table>';
+            echo '            </div>';
+            echo '        </div>';
+            echo '    </div>';
+            echo '</section>';
+        }
+    } else {
+        echo "No se encontraron coches en la base de datos.";
+    }
+    ?>
+
 
 </body>
 </html>

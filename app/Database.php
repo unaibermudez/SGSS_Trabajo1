@@ -114,6 +114,14 @@ class Database{
 
         return mysqli_fetch_array($query);
     }
+    public function obtener_coches(){
+        $sql_ins="SELECT * FROM coches";
+
+        $query = mysqli_query($this->conn, $sql_ins)
+            or die (mysqli_error($this->conn));
+        return $query;
+
+    }
 
 }
 

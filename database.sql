@@ -46,6 +46,7 @@ CREATE TABLE `usuarios` (
 
 CREATE TABLE `coches` (
   `id_coche` int NOT NULL AUTO_INCREMENT,
+  `imagen` text NOT NULL,
   `marca` text NOT NULL,
   `modelo` text NOT NULL,
   `anno` int NOT NULL,
@@ -53,6 +54,8 @@ CREATE TABLE `coches` (
   `caballos` int NOT NULL,
   `combustible` text NOT NULL,
   `precio` float NOT NULL,
+  `kilometros` int NOT NULL,
+  `cambio` text NOT NULL,
   `id_dueno` int NOT NULL,
   PRIMARY KEY (`id_coche`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -71,9 +74,12 @@ INSERT INTO `usuarios` (`id_usuario`, `username`, `nombre_apellidos`, `dni`, `te
 -- Volcado de datos para la tabla `coches`
 --
 
-INSERT INTO `coches` (`marca`, `modelo`, `anno`, `color`, `caballos`, `combustible`, `precio`, `id_dueno`) VALUES
-("Dacia", "Sandero", "2023", "negro", "91", "gasolina", "14720", "0");
-
+INSERT INTO `coches` (`imagen`, `marca`, `modelo`, `anno`, `color`, `caballos`, `combustible`, `precio`, `kilometros`,`cambio` ,`id_dueno`) VALUES
+("sandero.jpg","Dacia", "Sandero", "2023", "Negro", "91", "gasolina", "14720", "0", "Manual", "0"),
+("ccorsa","Opel", "Corsa", "2015", "Gris", "90", "gasolina", "7950", "142000", "Manual", "1" ),
+("megane","Renault", "Megane", "2015", "Blanco", "115", "gasolina", "9600", "102000","Manual", "2" ),
+("golf","Volkswagen", "Golf GTE", "2016", "Negro", "204", "Hibrido(gasolina)", "16500", "209000","Manual", "3" ),
+("audi","Audi", "A4", "2007", "Blanco", "300", "gasolina", "12800", "153000","Manual", "4" );
 
 
 --

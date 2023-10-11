@@ -35,7 +35,7 @@ if(isset($_POST['submit'])){
 <body>
 
     <!-- Incluimos la barra del menú -->
-    <?php //require_once("components/nav-bar.php")?>
+    <?php require_once("components/nav-bar.php")?>
     <div class="login-container">
         <h1>Iniciar Sesión</h1>
         

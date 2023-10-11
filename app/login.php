@@ -1,32 +1,31 @@
 <?php
-    session_start();
 
-   if(isset($_POST['submit'])){
-        // Incluir el archivo de la clase Database
-        require('Database.php');
+if (isset($_POST['submit'])) {
+    // Incluir el archivo de la clase Database
+    require('Database.php');
 
-        // Recoger los valores del formulario
-        $username = $_POST['username'];
-        $password = $_POST['password'];
+    // Recoger los valores del formulario
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-        // Crear una instancia de la clase Database
-        $db = Database::getInstance();
+    // Crear una instancia de la clase Database
+    $db = Database::getInstance();
 
-        // Llamar al método para comprobar la identidad
-        $inicio_sesion_exitoso = $db->comprobar_identidad($username, $password);
+    // Llamar al método para comprobar la identidad
+    $inicio_sesion_exitoso = $db->comprobar_identidad($username, $password);
 
-        if($inicio_sesion_exitoso){
-            // Inicio de sesión exitoso, redireccionar o mostrar un mensaje de éxito
-            header('Location: index.php'); // Reemplaza 'dashboard.php' con la página a la que deseas redireccionar
-            $_SESSION["user"] = "yes";
-            $_SESSION["username"] = $username; // Configura el nombre del usuario en una variable de sesión
-
-            exit;
-        } else {
-            // Inicio de sesión fallido, mostrar un mensaje de error
-            
-        }
+    if ($inicio_sesion_exitoso) {
+        // Inicio de sesión exitoso, redireccionar o mostrar un mensaje de éxito
+        session_start();
+        header('Location: index.php'); // Reemplaza 'dashboard.php' con la página a la que deseas redireccionar
+        $_SESSION["user"] = "yes";
+        $_SESSION["username"] = $username; // Configura el nombre del usuario en una variable de sesión
+        exit;
+    } else {
+        // Si la sesión no se inicia correctamente, muestra un mensaje de alerta
+        echo '<script>alert("Usuario y/o contraseña incorrectos")</script>';
     }
+}
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +35,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - MotorCity Dealership</title>
     <link rel="stylesheet" href="/styles/login.css"> <!-- Include your CSS file for styling -->
-    
 </head>
 <body>
 
@@ -51,10 +49,15 @@
 
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
-
-            <button id = "button" type="submit" name="submit" onclick="iniciar_sesion()">Login</button>
+            
+            <button id="button" type="submit" name="submit">Login</button>
         </form>
+       
         <p>Don't have an account? <a href="register.php">Register</a></p>
     </div>
+
 </body>
 </html>
+
+
+

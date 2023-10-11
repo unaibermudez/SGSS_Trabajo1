@@ -55,6 +55,23 @@ class Database{
         }
     }
 
+    public function obtener_datos_usuario($user_id){
+        $datos_usuario = array(); // Creamos un arreglo para almacenar los datos del usuario
+    
+        $sql = "SELECT * FROM usuarios WHERE id_usuario='$user_id'";
+        $result = mysqli_query($this->conn, $sql);
+    
+        if ($result) {
+            if (mysqli_num_rows($result) > 0) {
+                $row = mysqli_fetch_assoc($result);
+                $datos_usuario = $row; // Almacenar los datos del usuario en el arreglo
+            }
+            mysqli_free_result($result);
+        }
+    
+        return $datos_usuario; // Devolver el arreglo con los datos del usuario
+    }
+
     public function registrar_usuario($datos){
         // Validamos los datos 
         if(!Validador::val_DNI($datos['dni'])){

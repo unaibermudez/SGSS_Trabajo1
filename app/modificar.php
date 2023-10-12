@@ -11,16 +11,18 @@
         
     }
 
-    $id = $_SESSION['id_usuario'];
+    $id = $_SESSION['username'];
 
-    if(strcmp($_POST['password'], $_POST['password2']) == 0){
-        $datos['username'] = $_POST['username'];
-        $datos['nombre_apellidos'] = $_POST['nombre_apellidos'];
-        $datos['dni'] = $_POST['dni'];
-        $datos['telf'] = $_POST['telf'];
-        $datos['fecha_nacimiento'] = $_POST['fecha_nacimiento'];
-        $datos['email'] = $_POST['email'];
-        $datos['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    if(isset($_POST['submit'])){
+        
+        if(!empty($_POST['username'])){
+            $nombre = $_POST['username'];
+        }else{
+            $nombre = $_SESSION['username'];
+        }
+        $sql = "UPDATE usuarios SET username = '$nombre' WHERE username = '$id'";
+        $res = $db->modificar_datos_usuario($sql);
+        header('Location:usuario.php');
     }
 
 

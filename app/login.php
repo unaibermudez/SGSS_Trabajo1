@@ -43,7 +43,7 @@ if (isset($_POST['submit'])) {
     <div class="login-container">
         <h1>Iniciar Sesión</h1>
         
-        <form action="" method="POST" onsubmit="return iniciar_sesion()">
+        <form action="" method="POST">
             <label for="username">Nombre de Usuario:</label>
             <input type="username" id="username" name="username" required>
 

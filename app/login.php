@@ -25,6 +25,8 @@ if (isset($_POST['submit'])) {
         // Si la sesión no se inicia correctamente, muestra un mensaje de alerta
         echo '<script>alert("Usuario y/o contraseña incorrectos")</script>';
     }
+
+    
 }
 ?>
 

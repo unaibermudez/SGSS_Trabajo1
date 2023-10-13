@@ -38,7 +38,7 @@
                 <p>Fecha de Nacimiento: <?php echo $datos['fecha_nacimiento']; ?></p>
                 <p>Email: <?php echo $datos['email']; ?></p>
                 <p></p>
-                <form action="modificar.php" method="POST">
+                <form action="modificarUsuario.php" method="POST">
                     <button id="button" type="submit" name="modificar">Modificar Datos</button>
                 </form>
                 <p></p>

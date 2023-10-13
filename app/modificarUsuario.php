@@ -13,19 +13,78 @@
 
     $id = $_SESSION['username'];
 
+    $datos = $db->obtener_datos_usuario($id);
+    $_SESSION['email'] = $datos['email'];
+    $_SESSION['telf'] = $datos['telf'];
+    $_SESSION['fecha_nacimiento'] = $datos['fecha_nacimiento'];
+    $_SESSION['nombre_apellidos'] = $datos['nombre_apellidos'];
+    $_SESSION['dni'] = $datos['dni'];
+    $_SESSION['username'] = $datos['username'];
+    $_SESSION['password'] = $datos['password'];
+
+
     if(isset($_POST['submit'])){
+
+        $hay_cambios = false;
         
         if(!empty($_POST['username'])){
             $nombre = $_POST['username'];
+            $hay_cambios = true;
         }else{
             $nombre = $_SESSION['username'];
         }
-        $sql = "UPDATE usuarios SET username = '$nombre' WHERE username = '$id'";
-        $res = $db->modificar_datos_usuario($sql);
-        header('Location:usuario.php');
+
+        if(!empty($_POST['password']) && !empty($_POST['password2']) && $_POST['password'] == $_POST['password2']){
+            $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $hay_cambios = true;
+        }else{
+            $password = $_SESSION['password'];
+        }
+
+        if(!empty($_POST['email'])){
+            $email = $_POST['email'];
+            $hay_cambios = true;
+        }else{
+            $email = $_SESSION['email'];
+        }
+
+        if(!empty($_POST['dni'])){
+            $dni = $_POST['dni'];
+            $hay_cambios = true;
+        }else{
+            $dni = $_SESSION['dni'];
+        }
+
+        if(!empty($_POST['telf'])){
+            $telf = $_POST['telf'];
+            $hay_cambios = true;
+        }else{
+            $telf = $_SESSION['telf'];
+        }
+
+        if (!empty($_POST['fecha_nacimiento'])) {
+            $fecha_nacimiento = $_POST['fecha_nacimiento'];
+            $hay_cambios = true;
+        } else {
+            $fecha_nacimiento = $_SESSION['fecha_nacimiento'];
+        }
+
+        if(!empty($_POST['nombre_apellidos'])){
+            $nombre_apellidos = $_POST['nombre_apellidos'];
+            $hay_cambios = true;
+        }else{
+            $nombre_apellidos = $_SESSION['nombre_apellidos'];
+        }
+
+        if($hay_cambios){
+            $sql = "UPDATE usuarios SET username = '$nombre' , password = '$password' , email = '$email' , dni = '$dni' , telf = '$telf' , fecha_nacimiento = '$fecha_nacimiento' , nombre_apellidos = '$nombre_apellidos' WHERE username = '$id'";
+            $res = $db->modificar_datos_usuario($sql);
+            $_SESSION['username'] = $nombre;
+            header('Location:usuario.php');
+        }else{
+            header('Location:usuario.php');
+        }
     }
-
-
 ?>
 
 <!DOCTYPE html>

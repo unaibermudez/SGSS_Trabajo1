@@ -101,7 +101,7 @@
     </header>
 
     <div class="register-container">
-        <h1>Modificar</h1>
+        <h1>Rellena solo los campos que quieras cambiar</h1>
 
         <form method="POST" action="" onsubmit="return validar_y_enviar_datos()">
 

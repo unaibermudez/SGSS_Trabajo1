@@ -1,15 +1,5 @@
 <?php
 session_start();
-<<<<<<< HEAD
-require('Database.php');
-
-$db = Database::getInstance();
-
-// Llama al método para obtener los datos de los coches
-$datos_coches = $db->obtener_datos_coches();
-?>
-
-=======
 
 header('Content-Type: text/html; charset=utf-8');
 require('Database.php');
@@ -22,7 +12,6 @@ if(isset($_POST['submit'])){
     
             $error = $db->eliminar_coche($datos); }?>
             
->>>>>>> origin/peio
 <!DOCTYPE html>
 <html lang="en">
 <head>

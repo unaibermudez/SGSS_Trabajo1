@@ -53,6 +53,8 @@ CREATE TABLE `coches` (
   `caballos` int NOT NULL,
   `combustible` text NOT NULL,
   `precio` float NOT NULL,
+  `cambio` text NOT NULL,
+  `kilometros` int NOT NULL,
   `id_dueno` int NOT NULL,
   PRIMARY KEY (`id_coche`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -71,8 +73,12 @@ INSERT INTO `usuarios` (`id_usuario`, `username`, `nombre_apellidos`, `dni`, `te
 -- Volcado de datos para la tabla `coches`
 --
 
-INSERT INTO `coches` (`marca`, `modelo`, `anno`, `color`, `caballos`, `combustible`, `precio`, `id_dueno`) VALUES
-("Dacia", "Sandero", "2023", "negro", "91", "gasolina", "14720", "0");
+INSERT INTO `coches` (`marca`, `modelo`, `anno`, `color`, `caballos`, `combustible`, `precio`, `cambio`, `kilometros`, `id_dueno`) VALUES
+("Dacia", "Sandero", "2023", "negro", "91", "Gasolina", "14720", "Automatico", "50000",  "0"), 
+("Mercedes", "A45", "2020", "blanco", "250", "Gasolina", "40000", "Manual", "20567",  "1"),
+("Megane", "RS", "2018", "gris", "180", "Diesel", "25360", "Manual", "100000",  "2"),
+("Audi", "RS6 Avant", "2020", "blanco", "1001", "Gasolina", "210000", "Automatico", "17500",  "3"),
+("BMW", "M5", "2020", "azul", "560", "Gasolina", "80000", "Manual", "187500",  "4");
 
 
 

@@ -55,6 +55,49 @@ class Database{
         }
     }
 
+    public function modificar_datos_usuario($sql) {
+    // Verifica si el arreglo de datos no está vacío y que el ID sea válido
+        $this->send_query_db($sql);
+    }
+
+    public function obtener_datos_coches() {
+        $datos_coches = array(); // Creamos un arreglo para almacenar los datos de los coches
+    
+        $sql = "SELECT * FROM coches"; // Consulta SQL para seleccionar todos los coches
+    
+        $result = mysqli_query($this->conn, $sql);
+    
+        if ($result) {
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $datos_coches[] = $row; // Almacenar los datos de cada coche en el arreglo
+                }
+                mysqli_free_result($result);
+            }
+        }
+    
+        return $datos_coches; // Devolver el arreglo con los datos de los coches
+    }
+    
+    
+
+    public function obtener_datos_usuario($user){
+        $datos_usuario = array(); // Creamos un arreglo para almacenar los datos del usuario
+    
+        $sql = "SELECT * FROM usuarios WHERE username='$user'";
+        $result = mysqli_query($this->conn, $sql);
+    
+        if ($result) {
+            if (mysqli_num_rows($result) > 0) {
+                $row = mysqli_fetch_assoc($result);
+                $datos_usuario = $row; // Almacenar los datos del usuario en el arreglo
+            }
+            mysqli_free_result($result);
+        }
+    
+        return $datos_usuario; // Devolver el arreglo con los datos del usuario
+    }
+
     public function registrar_usuario($datos){
         // Validamos los datos 
         if(!Validador::val_DNI($datos['dni'])){

@@ -1,0 +1,84 @@
+body, h1, h2, p, ul, li {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the header */
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    padding-top: 120px;
+}
+
+/* Center align the header text */
+header h1 {
+    font-size: 2rem;
+}
+
+.datos{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Style each individual card */
+.vista{
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Style the card image */
+.vista img {
+    width: 100%;
+    max-width: 150px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.vista label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.vista input {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.vista button {
+    background-color: #1e63ec;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.vista button:hover {
+    background-color: #153b87;
+}
+
+.vista p {
+    margin-top: 10px;
+}
+
+.vista a {
+    color: #1e63ec;
+    text-decoration: none;
+}

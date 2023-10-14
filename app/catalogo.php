@@ -14,6 +14,7 @@
     <!-- Header -->
     <header>
         <h1>Catálogo de Coches</h1>
+        <a href="/registrarCoche.php" class="button">Modifica el Catalogo</a>
     </header>
     <?php
     // Incluir el archivo de la clase Database
@@ -22,7 +23,7 @@
     // Crear una instancia de la clase Database
     $db = Database::getInstance(); 
     $result= $db->obtener_coches();
-
+    
     if ($result->num_rows > 0) {
         // Recorre los resultados y muestra las tarjetas de coches
         while ($row = $result->fetch_assoc()) {
@@ -56,7 +57,10 @@
         echo "No se encontraron coches en la base de datos.";
     }
     ?>
+ 
 
-
+<!-- Script para el desplazamiento suave -->
+<script defer src="scripts/forms2.js"></script>
 </body>
 </html>
+

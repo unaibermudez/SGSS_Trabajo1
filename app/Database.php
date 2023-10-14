@@ -122,7 +122,13 @@ class Database{
         return $query;
 
     }
+    public function registrar_coche($datos){
+       
 
-}
+        $sql_ins = "INSERT INTO coches (imagen, marca, modelo, anno, color, caballos,combustible, precio, kilometros,cambio,id_dueno) VALUES ('{$datos['imagen']}','{$datos['marca']}', '{$datos['modelo']}', '{$datos['anno']}', '{$datos['color']}', '{$datos['caballos']}', '{$datos['combustible']}', '{$datos['precio']}', '{$datos['kilometros']}', '{$datos['cambio']}', '{$datos['id_dueno']}')";
+      
+        $res = $this->send_query_db($sql_ins);
+    }
 
-?>
+    
+    } ?>

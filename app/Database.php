@@ -173,5 +173,23 @@ class Database{
         $res = $this->send_query_db($sql_ins);
     }
 
+    public function eliminar_coche($datos) {
+        if (!isset($datos['id_coche']) || !is_numeric($datos['id_coche'])) {
+            return false; // Manejar el error de alguna forma, por ejemplo, lanzar una excepción
+        }
+    
+        $id_coche = intval($datos['id_coche']);
+        $sql_del = "DELETE FROM coches WHERE id_coche = " . $id_coche;
+    
+        $res = $this->send_query_db($sql_del);
+        
+        // Aquí puedes verificar el resultado de la eliminación y retornar true o false según corresponda
+        if ($res) {
+            return true; // La eliminación fue exitosa
+        } else {
+            return false; // O manejar el error de otra forma
+        }
+    }
+
     
     } ?>

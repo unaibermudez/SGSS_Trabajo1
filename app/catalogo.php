@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+header('Content-Type: text/html; charset=utf-8');
+require('Database.php');
+$db = Database::getInstance();
+
+if(isset($_POST['submit'])){
+        unset($_POST['submit']);
+            
+            $datos['id_coche'] = $_POST['id_coche'];
+    
+            $error = $db->eliminar_coche($datos); }?>
+            
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,14 +30,28 @@
         <h1>Catálogo de Coches</h1>
         <a href="/registrarCoche.php" class="button">Modifica el Catalogo</a>
     </header>
-    <?php
-    // Incluir el archivo de la clase Database
-    require('Database.php');
 
-    // Crear una instancia de la clase Database
-    $db = Database::getInstance(); 
-    $result= $db->obtener_coches();
+    <html>
+<head>
+    <title>Eliminar Coche</title>
+</head>
+<body>
+    <h2>Eliminar Coche</h2>
+    <button id="showFormButton">Mostrar Formulario</button>
+    <form id="deleteCarForm" style="display: none;" method="POST" action="" onsubmit="return validar_y_eliminar()">
+    <label for="id_coche">ID del Coche:</label>
+    <input type="number" id="id_coche" name="id_coche" required>
+    <button type="submit" name="submit">Eliminar vehículo</button>
+</form>
+
+    <div id="resultMessage"></div>
+
+    <script src="forms2.js"></script>
+</body>
+</html>
+    <?php
     
+    $result= $db->obtener_coches();
     if ($result->num_rows > 0) {
         // Recorre los resultados y muestra las tarjetas de coches
         while ($row = $result->fetch_assoc()) {
@@ -46,6 +74,7 @@
             echo '                        <td>' . $row["kilometros"] . ' km</td>';
             echo '                        <td>' . $row["combustible"] . '</td>';
             echo '                        <td>' . $row["cambio"] . '</td>';
+            echo '                        <td>' . 'ID: '. $row["id_coche"] . '</td>';
             echo '                    </tr>';
             echo '                </table>';
             echo '            </div>';
@@ -61,6 +90,12 @@
 
 <!-- Script para el desplazamiento suave -->
 <script defer src="scripts/forms2.js"></script>
+<script>
+        document.getElementById("showFormButton").addEventListener("click", function() {
+            const form = document.getElementById("deleteCarForm");
+            form.style.display = form.style.display === "none" ? "block" : "none";
+        });
+    </script>
 </body>
 </html>
 

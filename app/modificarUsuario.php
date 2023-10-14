@@ -38,6 +38,7 @@
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $hay_cambios = true;
         }else{
+            echo '<script>alert("La contraseña no se ha cambiado porque no coinciden")</script>';
             $password = $_SESSION['password'];
         }
 

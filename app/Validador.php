@@ -1,5 +1,4 @@
 <?php
-header('Content-Type: text/html; charset=utf-8');
 
 class Validador{
     // Esta clase reune un conjunto de métodos enfocados a comprobar si los

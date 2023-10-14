@@ -30,21 +30,27 @@
     <section class="datos">
         <div class="vista">
             <?php if ($usuario_iniciado): ?>
-                <img src="/images/foto-perfil.webp">
-                <p>Username: <?php echo $datos['username']; ?></p>
-                <p>Nombre y Apellidos: <?php echo $datos['nombre_apellidos']; ?></p>
-                <p>DNI: <?php echo $datos['dni']; ?></p>
-                <p>Teléfono: <?php echo $datos['telf']; ?></p>
-                <p>Fecha de Nacimiento: <?php echo $datos['fecha_nacimiento']; ?></p>
-                <p>Email: <?php echo $datos['email']; ?></p>
-                <p></p>
-                <form action="modificarUsuario.php" method="POST">
-                    <button id="button" type="submit" name="modificar">Modificar Datos</button>
-                </form>
-                <p></p>
-                <form action="logout.php" method="post">
-                    <button id="button" type="submit" name="submit">Cerrar Sesion</button>
-                </form>            
+                <div class="profile">
+                    <img src="/images/foto-perfil.webp" alt="Profile Image">
+                    <div class="user-info">
+                        <p><strong>Username:</strong> <?php echo $datos['username']; ?></p>
+                        <p><strong>Nombre y Apellidos:</strong> <?php echo $datos['nombre_apellidos']; ?></p>
+                        <p><strong>DNI:</strong> <?php echo $datos['dni']; ?></p>
+                        <p><strong>Teléfono:</strong> <?php echo $datos['telf']; ?></p>
+                        <p><strong>Fecha de Nacimiento:</strong> <?php echo $datos['fecha_nacimiento']; ?></p>
+                        <p><strong>Email:</strong> <?php echo $datos['email']; ?></p>
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <form action="modificarUsuario.php" method="POST">
+                        <button id="modify-button" type="submit" name="modificar">Modificar Datos</button>
+                    </form>
+                    <form action="logout.php" method="post">
+                        <button id="logout-button" type="submit" name="submit">Cerrar Sesion</button>
+                    </form>
+                </div>
+       
             <?php endif; ?>
         </div>
     </section>

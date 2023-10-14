@@ -108,41 +108,41 @@
 
             <div class="form-item">
                 <label for="username">Cambiar username:</label>
-                <input type="text" name="username" id="username">
+                <input type="text" name="username" id="username" value="<?= $_SESSION["username"] ?>">
                 <span id="errorUsername" class="error"></span>
             </div>
 
             <div class="form-item">
                 <label for="nombre_apellidos">Cambiar Nombre y Apellidos:</label>
-                <input type="text" name="nombre_apellidos" id="nombre_apellidos">
+                <input type="text" name="nombre_apellidos" id="nombre_apellidos" value="<?= $_SESSION["nombre_apellidos"] ?>">
                 <span id="errorNombreApellido" class="error"></span>
             </div>
 
             <div class="form-item">
                 <label for="dni">Cambiar DNI:</label>
-                <input type="text" name="dni" id="dni">
+                <input type="text" name="dni" id="dni" value="<?= $_SESSION["dni"] ?>">
                 <span id="errorDNI" class="error"></span>
             </div>
 
             <div class="form-item">
                 <label for="telf">Cambiar Teléfono:</label>
-                <input type="text" name="telf" id="telf">
+                <input type="text" name="telf" id="telf" value="<?= $_SESSION["telf"] ?>">
                 <span id="errorTelf" class="error"></span>
             </div>
 
             <div class="form-item">
                 <label for="fecha_nacimiento">Cambiar Fecha de Nacimiento:</label>
-                <input type="date" name="fecha_nacimiento" id="fecha_nacimiento">
+                <input type="date" name="fecha_nacimiento" id="fecha_nacimiento" value="<?= $_SESSION["fecha_nacimiento"] ?>">
             </div>
 
             <div class="form-item">
                 <label for="email">Cambiar Email:</label>
-                <input type="email" name="email" id="email">
+                <input type="email" name="email" id="email" value="<?= $_SESSION["email"] ?>">
                 <span id="errorMail" class="error"></span>
             </div>
 
             <div class="form-item">
-                <label for="password">Cambiar Password:</label>
+                <label for="password">Nueva Password:</label>
                 <input type="password" name="password" id="password">
                 <span id="errorPassword" class="error"></span>
             </div>

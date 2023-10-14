@@ -1,0 +1,2 @@
+-poner foto de perfil
+-al cambiar la contraseña, solicitar contraseña actual para mayor seguridad

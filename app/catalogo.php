@@ -1,5 +1,4 @@
 <?php
-session_start();
 require('Database.php');
 
 $db = Database::getInstance();

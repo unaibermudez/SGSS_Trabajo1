@@ -6,28 +6,35 @@ require('Database.php');
 $db = Database::getInstance();
 
 if(isset($_POST['submit'])){
-        unset($_POST['submit']);
-            
-            $datos['imagen']= "/images/sandero.jpg";
-            $datos['marca'] = $_POST['marca'];
-            $datos['modelo'] = $_POST['modelo'];
-            $datos['anno'] = $_POST['anno'];
-            $datos['color'] = $_POST['color'];
-            $datos['caballos'] = $_POST['caballos'];
-            $datos['combustible'] = $_POST['combustible'];
-            $datos['precio'] = $_POST['precio'];
-            $datos['kilometros'] = $_POST['kilometros'];
-            $datos['cambio'] = $_POST['cambio'];
-            $datos['id_dueno'] = 1;
+    unset($_POST['submit']);
+        
+        $datos['imagen']= "/images/coche-predeterminado.webp";
+        $datos['marca'] = $_POST['marca'];
+        $datos['modelo'] = $_POST['modelo'];
+        $datos['anno'] = $_POST['anno'];
+        $datos['color'] = $_POST['color'];
+        $datos['caballos'] = $_POST['caballos'];
+        $datos['combustible'] = $_POST['combustible'];
+        $datos['precio'] = $_POST['precio'];
+        $datos['kilometros'] = $_POST['kilometros'];
+        $datos['cambio'] = $_POST['cambio'];
+
+        $coche_añadido_con_exito = $db->registrar_coche($datos); }
+        if($coche_añadido_con_exito){
+            header('Location: catalogo.php'); 
+        }
+        
+
     
-            $error = $db->registrar_coche($datos); }?>
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - MotorCity Dealership</title>
+    <title>Registrar Coche</title>
     <link rel="stylesheet" href="/styles/register.css">  <!-- Include your CSS file for styling -->
 </head>
 <body>
@@ -35,9 +42,9 @@ if(isset($_POST['submit'])){
 <?php require_once("components/nav-bar.php")?>
 
 <div class="register-container">
-    <h1>Editar Catalogo</h1>
+    <h1>Añadir Coche</h1>
 
-    <form method="POST" action="" onsubmit="return validar_y_enviar_coches()">
+    <form method="POST" action="">
 
         <div class="form-item">
             <label for="marca">Marca:</label>
@@ -65,8 +72,8 @@ if(isset($_POST['submit'])){
         </div>
 
         <div class="form-item">
-            <label for="combustible">Combudtible:</label>
-            <input type="text" name="combustible" id="combustible" required>
+            <label for="combustible">Tipo de Combustible:</label>
+            <input type="text" name="combustible" id="combustible" placeholder="Gasolina, Diesel, Electrico..." required>
         </div>
 
         <div class="form-item">
@@ -81,10 +88,17 @@ if(isset($_POST['submit'])){
 
         <div class="form-item">
             <label for="cambio">Cambio:</label>
-            <input type="text" name="cambio" id="cambio" required>
+            <input type="text" name="cambio" id="cambio" placeholder="Manual o Automático" required>
         </div>
+        <!--
+        <form action="process_form.php" method="post" enctype="multipart/form-data">
+            <label for="image">Select an Image:</label>
+            <input type="file" id="image" name="image" accept="image/*">
+            <input type="submit" value="Upload">
+        </form>
+        -->
 
-        <button id="button" type="submit" name="submit" onclick="validar_y_enviar_coches()">Añadir vehiculo</button>
+        <button id="button" type="submit" name="submit">Añadir vehiculo</button>
 
     </form>
 </div>

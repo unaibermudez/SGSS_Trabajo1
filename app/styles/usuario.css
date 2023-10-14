@@ -105,7 +105,7 @@ header h1 {
     text-align: center;
 }
 
-#modify-button, #logout-button {
+#modify-button{
     background-color: #0077B5; /* LinkedIn blue color */
     color: #fff;
     padding: 10px 20px;
@@ -115,7 +115,21 @@ header h1 {
     cursor: pointer;
     margin: 10px;
 }
+#logout-button{
+    background-color: #f01818; /* LinkedIn blue color */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+}
 
-#modify-button:hover, #logout-button:hover {
+#logout-button:hover{
+    background-color: #eb5656; /* LinkedIn blue color */
+ 
+}
+#modify-button:hover{
     background-color: #005580; /* Darker shade on hover */
 }

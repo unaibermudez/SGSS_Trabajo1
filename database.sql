@@ -54,14 +54,8 @@ CREATE TABLE `coches` (
   `caballos` int NOT NULL,
   `combustible` text NOT NULL,
   `precio` float NOT NULL,
-<<<<<<< HEAD
   `cambio` text NOT NULL,
   `kilometros` int NOT NULL,
-=======
-  `kilometros` int NOT NULL,
-  `cambio` text NOT NULL,
->>>>>>> origin/peio
-  `id_dueno` int NOT NULL,
   PRIMARY KEY (`id_coche`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -79,22 +73,12 @@ INSERT INTO `usuarios` (`id_usuario`, `username`, `nombre_apellidos`, `dni`, `te
 -- Volcado de datos para la tabla `coches`
 --
 
-<<<<<<< HEAD
-INSERT INTO `coches` (`marca`, `modelo`, `anno`, `color`, `caballos`, `combustible`, `precio`, `cambio`, `kilometros`, `id_dueno`) VALUES
-("Dacia", "Sandero", "2023", "negro", "91", "Gasolina", "14720", "Automatico", "50000",  "0"), 
-("Mercedes", "A45", "2020", "blanco", "250", "Gasolina", "40000", "Manual", "20567",  "1"),
-("Megane", "RS", "2018", "gris", "180", "Diesel", "25360", "Manual", "100000",  "2"),
-("Audi", "RS6 Avant", "2020", "blanco", "1001", "Gasolina", "210000", "Automatico", "17500",  "3"),
-("BMW", "M5", "2020", "azul", "560", "Gasolina", "80000", "Manual", "187500",  "4");
-
-=======
-INSERT INTO `coches` (`imagen`, `marca`, `modelo`, `anno`, `color`, `caballos`, `combustible`, `precio`, `kilometros`,`cambio` ,`id_dueno`) VALUES
-("/images/sandero.jpg","Dacia", "Sandero", "2023", "Negro", "91", "gasolina", "14720", "0", "Manual", "0"),
-("/images/ccorsa.jpg","Opel", "Corsa", "2015", "Gris", "90", "gasolina", "7950", "142000", "Manual", "1" ),
-("/images/megane.webp","Renault", "Megane", "2015", "Blanco", "115", "gasolina", "9600", "102000","Manual", "2" ),
-("/images/golf.jpg","Volkswagen", "Golf GTE", "2016", "Negro", "204", "Hibrido(gasolina)", "16500", "209000","Manual", "3" ),
-("/images/audi.jpg","Audi", "A4", "2007", "Blanco", "300", "gasolina", "12800", "153000","Manual", "4" );
->>>>>>> origin/peio
+INSERT INTO `coches` (`imagen`, `marca`, `modelo`, `anno`, `color`, `caballos`, `combustible`, `precio`, `kilometros`,`cambio`) VALUES
+("/images/sandero.jpg","Dacia", "Sandero", "2023", "Negro", "91", "gasolina", "14720", "0", "Manual"),
+("/images/ccorsa.jpg","Opel", "Corsa", "2015", "Gris", "90", "gasolina", "7950", "142000", "Manual"),
+("/images/megane.webp","Renault", "Megane", "2015", "Blanco", "115", "gasolina", "9600", "102000","Manual"),
+("/images/golf.jpg","Volkswagen", "Golf GTE", "2016", "Negro", "204", "Hibrido(gasolina)", "16500", "209000","Manual"),
+("/images/audi.jpg","Audi", "A4", "2007", "Blanco", "300", "gasolina", "12800", "153000","Manual");
 
 
 --

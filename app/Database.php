@@ -140,37 +140,14 @@ class Database{
 
         return false;
     }
-
-    private function send_query_db($select_instr){
-        // PRE: Recibe una cadena de texto
-        // POST: Comprueba si es una consulta SQL y la realiza a la base de
-        // datos. Si recibe multiples valores (SELECT) devuelve un array.
-        // Si no (UPDATE), devuelve un booleano.
-        // TODO: Comprobar que la instrucción no es una inyección SQL
-
-        $query = mysqli_query($this->conn, $select_instr)
-            or die (mysqli_error($this->conn));
-
-        if(is_bool($query)){
-            return $query;
-        }
-
-        return mysqli_fetch_array($query);
-    }
-    public function obtener_coches(){
-        $sql_ins="SELECT * FROM coches";
-
-        $query = mysqli_query($this->conn, $sql_ins)
-            or die (mysqli_error($this->conn));
-        return $query;
-
-    }
+    
     public function registrar_coche($datos){
        
-
-        $sql_ins = "INSERT INTO coches (imagen, marca, modelo, anno, color, caballos,combustible, precio, kilometros,cambio,id_dueno) VALUES ('{$datos['imagen']}','{$datos['marca']}', '{$datos['modelo']}', '{$datos['anno']}', '{$datos['color']}', '{$datos['caballos']}', '{$datos['combustible']}', '{$datos['precio']}', '{$datos['kilometros']}', '{$datos['cambio']}', '{$datos['id_dueno']}')";
+        $sql_ins = "INSERT INTO coches (imagen, marca, modelo, anno, color, caballos,combustible, precio, kilometros,cambio) 
+        VALUES ('{$datos['imagen']}','{$datos['marca']}', '{$datos['modelo']}', '{$datos['anno']}', '{$datos['color']}', '{$datos['caballos']}', '{$datos['combustible']}', '{$datos['precio']}', '{$datos['kilometros']}', '{$datos['cambio']}')";
       
         $res = $this->send_query_db($sql_ins);
+        return true;
     }
 
     public function eliminar_coche($datos) {
@@ -191,5 +168,35 @@ class Database{
         }
     }
 
+    public function obtener_coches(){
+        $sql_ins="SELECT * FROM coches";
+
+        $query = mysqli_query($this->conn, $sql_ins)
+            or die (mysqli_error($this->conn));
+        return $query;
+
+    }
+    
+
+
+    private function send_query_db($select_instr){
+        // PRE: Recibe una cadena de texto
+        // POST: Comprueba si es una consulta SQL y la realiza a la base de
+        // datos. Si recibe multiples valores (SELECT) devuelve un array.
+        // Si no (UPDATE), devuelve un booleano.
+        // TODO: Comprobar que la instrucción no es una inyección SQL
+
+        $query = mysqli_query($this->conn, $select_instr)
+            or die (mysqli_error($this->conn));
+
+        if(is_bool($query)){
+            return $query;
+        }
+
+        return mysqli_fetch_array($query);
+    }
+   
+
+    
     
     } ?>

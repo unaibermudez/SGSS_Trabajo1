@@ -27,44 +27,6 @@ $datos_coches = $db->obtener_datos_coches();
     // Incluir el archivo de la clase Database
     require('Database.php');
 
-<<<<<<< HEAD
-    <section class="car-cards">
-        <?php
-        foreach ($datos_coches as $coche) {
-        ?>
-        <div class="car-card">
-            <div class="car-image">
-                <img src="/images/car.jpg" alt="<?php echo $coche['modelo']; ?>">
-            </div>
-            <div class="car-info">
-                <div class="car-title">
-                    <h2><?php echo $coche['marca'] . ' ' . $coche['modelo'] . ' (' . $coche['anno'] . ')'; ?></h2>
-                </div>
-                <div class="car-price">
-                    <p><?php echo $coche['precio'] . ' €'; ?>
-                        <form action="datosCoche.php" method="POST">
-                        <button id="button" type="submit" name="modificar">Mas Informacion</button>
-                        </form>
-                    </p>
-
-                </div>
-                <div class="car-details">
-                    <table>
-                        <tr>
-                            <td><?php echo $coche['caballos'] . ' CV'; ?></td>
-                            <td><?php echo $coche['kilometros'] . ' km'; ?></td>
-                            <td><?php echo $coche['combustible']; ?></td>
-                            <td><?php echo $coche['cambio']; ?></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <?php
-        }
-        ?>
-    </section>
-=======
     // Crear una instancia de la clase Database
     $db = Database::getInstance(); 
     $result= $db->obtener_coches();
@@ -106,7 +68,6 @@ $datos_coches = $db->obtener_datos_coches();
 
 <!-- Script para el desplazamiento suave -->
 <script defer src="scripts/forms2.js"></script>
->>>>>>> origin/peio
 </body>
 </html>
 

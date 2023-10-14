@@ -60,7 +60,25 @@ class Database{
         $this->send_query_db($sql);
     }
 
-
+    public function obtener_datos_coches() {
+        $datos_coches = array(); // Creamos un arreglo para almacenar los datos de los coches
+    
+        $sql = "SELECT * FROM coches"; // Consulta SQL para seleccionar todos los coches
+    
+        $result = mysqli_query($this->conn, $sql);
+    
+        if ($result) {
+            if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $datos_coches[] = $row; // Almacenar los datos de cada coche en el arreglo
+                }
+                mysqli_free_result($result);
+            }
+        }
+    
+        return $datos_coches; // Devolver el arreglo con los datos de los coches
+    }
+    
     
 
     public function obtener_datos_usuario($user){

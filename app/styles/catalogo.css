@@ -70,6 +70,20 @@ header h1 {
     margin-bottom: 10px;
 }
 
+.car-price button{
+    background-color: #1e63ec;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.car-price button:hover{
+    background-color: #153b87;
+}
+
 /* Style car details table */
 .car-details table {
     width: 100%;

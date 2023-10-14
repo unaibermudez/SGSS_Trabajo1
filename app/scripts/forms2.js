@@ -34,18 +34,18 @@ function validar_y_eliminar(){
 
 function validar_y_enviar_coches(){
     // Tomamos los elementos del formulario
-let imagen = document.getElementById('imagen')
-let marca    = document.getElementById('marca') 
-let modelo = document.getElementById('modelo') 
-let anno     = document.getElementById('anno') 
-let color    = document.getElementById('color') 
-let caballos   = document.getElementById('caballos') 
-let combustible   = document.getElementById('combustible') 
-let precio    = document.getElementById('precio') 
-let kilometros    = document.getElementById('kilometros') 
-let cambio     = document.getElementById('cambio') 
-let id_dueno = decument.getElementById('id_dueno')
-let button  = document.getElementById('button') 
+    let imagen = document.getElementById('imagen')
+    let marca    = document.getElementById('marca') 
+    let modelo = document.getElementById('modelo') 
+    let anno     = document.getElementById('anno') 
+    let color    = document.getElementById('color') 
+    let caballos   = document.getElementById('caballos') 
+    let combustible   = document.getElementById('combustible') 
+    let precio    = document.getElementById('precio') 
+    let kilometros    = document.getElementById('kilometros') 
+    let cambio     = document.getElementById('cambio') 
+    let id_dueno = decument.getElementById('id_dueno')
+    let button  = document.getElementById('button') 
 
 
 
@@ -77,6 +77,7 @@ let button  = document.getElementById('button')
    
         send_POST_form(server, data);
     }
+    
 function send_POST_form(path, params, method='post') {
 
     // The rest of this code assumes you are not using a library.

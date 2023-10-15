@@ -59,19 +59,19 @@
 
             <div class="form-item">
                 <label for="nombre_apellidos">Nombre y Apellidos:</label>
-                <input type="text" name="nombre_apellidos" id="nombre_apellidos" required>
+                <input type="text" name="nombre_apellidos" id="nombre_apellidos" placeholder= "Ej. Mikel Egaña"required>
                 <span id="errorNombreApellido" class="error"></span>
             </div>
 
             <div class="form-item">
                 <label for="dni">DNI:</label>
-                <input type="text" name="dni" id="dni" required>
+                <input type="text" name="dni" id="dni" placeholder="Ej. 11111111Z "required>
                 <span id="errorDNI" class="error"></span>
             </div>
 
             <div class="form-item">
                 <label for="telf">Teléfono:</label>
-                <input type="text" name="telf" id="telf" required>
+                <input type="text" name="telf" id="telf" placeholder="Ej. 946014024"required>
                 <span id="errorTelf" class="error"></span>
             </div>
 
@@ -82,7 +82,7 @@
 
             <div class="form-item">
                 <label for="email">Email:</label>
-                <input type="email" name="email" id="email" required>
+                <input type="email" name="email" id="email" placeholder="Ej. mikel.egana@ehu.eus" required>
                 <span id="errorMail" class="error"></span>
             </div>
 

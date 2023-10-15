@@ -31,17 +31,6 @@
         <h1>Catálogo de Coches</h1>
     </header>
     
-    <h2>Eliminar Coche</h2>
-    <button id="showFormButton">Mostrar Formulario</button>
-    <form id="deleteCarForm" style="display: none;" method="POST" action="" onsubmit="return validar_y_eliminar()">
-        <label for="id_coche">ID del Coche:</label>
-        <input type="number" id="id_coche" name="id_coche" required>
-        <button type="submit" name="submit">Eliminar vehículo</button>
-    </form>
-    <div id="resultMessage"></div>
-    <script src="forms2.js"></script>
-
-
     <section class="car-cards">
         <?php
         $result= $db->obtener_coches();
@@ -50,7 +39,7 @@
             while ($row = $result->fetch_assoc()) {
                 echo '<div class="car-card">';
                 echo '    <div class="car-image">';
-                echo '        <img src="' . $row["imagen"] . '" alt="' . $row["nombre"] . '">';                
+                echo '        <img src="' . $row["imagen"] . '" alt="' . $row["nombre"] . '">';
                 echo '    </div>';
                 echo '    <div class="car-info">';
                 echo '        <div class="car-title">';
@@ -70,16 +59,14 @@
                 echo '            </table>';
                 echo '        </div>';
                 echo '        <div class="edit-button">';
-                echo '            <form action="ModificarCoche.php" method="GET">';
-                echo '                <input type="hidden" name="id" value="' . $row["id_coche"] . '">';
+                echo '            <form action="ModificarCoche.php" method="POST">';
+                echo '                <input type="hidden" name="car_id" value="' . $row["id_coche"] . '">';
                 echo '                <button type="submit">Editar Datos</button>';
                 echo '            </form>';
                 echo '        </div>';
                 echo '    </div>';
                 echo '</div>';
-            }
-            
-            
+            }     
         } else {
             echo "No se encontraron coches en la base de datos.";
         }
@@ -89,16 +76,6 @@
     <a href="/registrarCoche.php">AÑADIR COCHE</a>
     </div>
 
- 
-
-    <!-- Script para el desplazamiento suave -->
-    <script defer src="scripts/forms2.js"></script>
-    <script>
-            document.getElementById("showFormButton").addEventListener("click", function() {
-                const form = document.getElementById("deleteCarForm");
-                form.style.display = form.style.display === "none" ? "block" : "none";
-            });
-        </script>
 </body>
 </html>
 

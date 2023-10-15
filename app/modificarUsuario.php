@@ -92,18 +92,18 @@
 <html>
 <head>
     <title>Modifify User - MotorCity Dealership</title>
-    <link rel="stylesheet" href="/styles/modificar.css"> <!-- Include your CSS file -->
+    <link rel="stylesheet" href="/styles/modificar_usuario.css"> <!-- Include your CSS file -->
     <link rel="stylesheet" href="/styles/nav-bar.css">
 </head>
 <body>
     <?php require_once("components/nav-bar.php")?>
+
     <header>
-        <h1>Modificar Datos</h1>
+        <h1>Modificar Datos Usuario</h1>
     </header>
 
     <div class="register-container">
-        <h1>Rellena solo los campos que quieras cambiar</h1>
-
+    
         <form method="POST" action="" onsubmit="return validar_y_enviar_datos()">
 
             <div class="form-item">
@@ -152,7 +152,7 @@
                 <input type="password" name="password2" id="password2">
             </div>
 
-            <button id="button" type="submit" name="submit" onclick="$db->modificar_datos_usuario($datos, $_SESSION['id_user'])">Guardar</button>
+            <button id="button" type="submit" name="submit" onclick="$db->modificar_datos_usuario($datos, $_SESSION['id_user'])">Guardar Cambios</button>
 
         </form>
     </div>

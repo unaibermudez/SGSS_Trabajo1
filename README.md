@@ -13,6 +13,12 @@ Este proyecto está compuesto por los siguientes integrantes:
 
 ## Instrucciones para iniciar el sistema
 
+Primero crea una carpeta con el nombre que perfieras e introduce los siguientes comandos:
+
+$cd "nombre de la carpeta" #para situarte dentro de la carpeta 
+
+$git clone https://github.com/unaibermudez/SGSS_Trabajo1.git #para clonar el repositorio en la nueva carpeta
+
 Introduce los siguientes comandos para iniciar los contenedores:
 
 -Situa la terminal dentro del repositorio /SGSS_Trabajo1
@@ -29,6 +35,8 @@ $ docker-compose stop
 Una vez iniciado el sistema deberían funcionar las siguientes urls:
 - Web: [http://localhost:81](http://localhost:81)
 - phpMyAdmin: [http://localhost:8890](http://localhost:8890)
+
+En http://localhost:8890 deberas importar el archivo database.sql que se encuentra dentro de la carpeta SGSS_Trabajo1 para importar la base de datos
 
 ## Descripción del sistema web 
 

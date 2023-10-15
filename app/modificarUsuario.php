@@ -91,7 +91,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Modifify User - MotorCity Dealership</title>
+    <title>Modify User - MotorCity Dealership</title>
     <link rel="stylesheet" href="/styles/modificar_usuario.css"> <!-- Include your CSS file -->
     <link rel="stylesheet" href="/styles/nav-bar.css">
 </head>

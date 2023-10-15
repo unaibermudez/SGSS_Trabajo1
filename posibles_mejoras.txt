@@ -1,7 +1,6 @@
 -poner foto de perfil
 -al cambiar la contraseña, solicitar contraseña actual para mayor seguridad
-
 -validador en añadir coche
-
+-añadir foto a los coches y a los usuarios
 
 

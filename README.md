@@ -9,7 +9,7 @@ sistema está basado en una arquitectura Linux + Apache + MariaDB (MySQL) + PHP 
 Este proyecto está compuesto por los siguientes integrantes:
 - Diego Eugenio Zabala
 - Unai Bermudez Osaba
-- Peio Lopez
+- Peio Lopez Sánchez
 
 ## Instrucciones para iniciar el sistema
 
@@ -45,21 +45,21 @@ funcionalidades:
 
 1. Registro de usuarios introduciendo y comprobando el formato de los
    siguientes datos:
+    - Nombre de usuario (sólo texto y que no exista otro usuario con el mismo username)
     - Nombre y apellidos (sólo texto) 
     - DNI (formato xxxxxxxxZ aplicando algoritmo para comprobar la letra)
     - Teléfono (tienen que ser 9 números)
-    - Fecha nacimiento (formato aaaa-mm-dd)
+    - Fecha nacimiento (formato mm/dd/yyy)
     - E-mail (formato e-mail válido)
     - "Contraseña" y "Repetir contraseña" coinciden
 
 2. Identificación en base a un nombre de usuario y contraseña
 
-3. Modificación de datos de un usuario identificado (realizar comprobaciones
-   del formato).
+3. Modificación de datos de un usuario identificado (realizar comprobaciones del formato).
 
-4. Posibilidad de añadir nuevos coches al sistema
+4. Generación de un catalogo con todos los coches que esten en la base de datos
 
-5. Generación de un catalogo con todos los coches que esten en la base de datos
+5. Posibilidad de añadir nuevos coches al sistema
 
 6. Posibilidad de modificar los datos de los coches del catálogo.
 

@@ -57,4 +57,6 @@ funcionalidades:
 
 7. Posibilidad de eliminar coches del catalogo
 
+## Fuentes e Iconos
+Hemos utilizado iconos de https://fontawesome.com y fuentes de https://fonts.google.com
 

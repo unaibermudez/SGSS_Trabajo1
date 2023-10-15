@@ -47,6 +47,21 @@ if(isset($_POST['submit'])){
     <div id="resultMessage"></div>
 
     <script src="forms2.js"></script>
+
+    <title>Modificar Coche</title>
+</head>
+<body>
+    <h2>Modificar Coche</h2>
+    <button id="showFormButton2">Mostrar Formulario</button>
+    <form id="deleteCarForm2" style="display: none;" >
+    <label for="id_coche">ID del Coche:</label>
+    <input type="number" id="id_coche" name="id_coche" required>
+    <a href="/registrarCoche.php" class="button">Modifica el Coche</a>
+</form>
+
+    <div id="resultMessage"></div>
+
+    <script src="forms2.js"></script>
 </body>
 </html>
     <?php
@@ -93,6 +108,12 @@ if(isset($_POST['submit'])){
 <script>
         document.getElementById("showFormButton").addEventListener("click", function() {
             const form = document.getElementById("deleteCarForm");
+            form.style.display = form.style.display === "none" ? "block" : "none";
+        });
+    </script>
+<script>
+        document.getElementById("showFormButton2").addEventListener("click", function() {
+            const form = document.getElementById("deleteCarForm2");
             form.style.display = form.style.display === "none" ? "block" : "none";
         });
     </script>

@@ -72,8 +72,13 @@ if(isset($_POST['submit'])){
         </div>
 
         <div class="form-item">
-            <label for="combustible">Tipo de Combustible:</label>
-            <input type="text" name="combustible" id="combustible" placeholder="Gasolina, Diesel, Electrico..." required>
+            <label for="combustible">Combustible:</label>
+            <select name="combustible" id="combustible">
+                <option value="Gasolina" <?= $_SESSION["combustible"] === 'Gasolina' ? 'selected' : '' ?>>Gasolina</option>
+                <option value="Diesel" <?= $_SESSION["combustible"] === 'Diesel' ? 'selected' : '' ?>>Diesel</option>
+                <option value="Hibrido" <?= $_SESSION["combustible"] === 'Hibrido' ? 'selected' : '' ?>>Hibrido</option>
+                <option value="Electrico" <?= $_SESSION["combustible"] === 'Electrico' ? 'selected' : '' ?>>Electrico</option>
+            </select>
         </div>
 
         <div class="form-item">
@@ -88,7 +93,10 @@ if(isset($_POST['submit'])){
 
         <div class="form-item">
             <label for="cambio">Cambio:</label>
-            <input type="text" name="cambio" id="cambio" placeholder="Manual o Automático" required>
+            <select>
+                <option value="Manual">Manual</option>
+                <option value="Automático">Automático</option>
+            </select>
         </div>
         <!--
         <form action="process_form.php" method="post" enctype="multipart/form-data">

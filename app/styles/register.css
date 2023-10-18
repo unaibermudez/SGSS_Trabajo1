@@ -38,6 +38,7 @@ body {
     margin-bottom: 10px;
 }
 
+.register-container select,
 .register-container input {
     width: 90%;
     padding: 10px;

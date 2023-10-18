@@ -75,11 +75,11 @@ INSERT INTO `usuarios` (`id_usuario`, `username`, `nombre_apellidos`, `dni`, `te
 --
 
 INSERT INTO `coches` (`imagen`, `marca`, `modelo`, `anno`, `color`, `caballos`, `combustible`, `precio`, `kilometros`,`cambio`) VALUES
-("/images/sandero.jpg","Dacia", "Sandero", "2023", "Negro", "91", "gasolina", "14720", "0", "Manual"),
-("/images/ccorsa.jpg","Opel", "Corsa", "2015", "Gris", "90", "gasolina", "7950", "142000", "Manual"),
-("/images/megane.webp","Renault", "Megane", "2015", "Blanco", "115", "gasolina", "9600", "102000","Manual"),
-("/images/golf.jpg","Volkswagen", "Golf GTE", "2016", "Negro", "204", "Hibrido(gasolina)", "16500", "209000","Manual"),
-("/images/audi.jpg","Audi", "A4", "2007", "Blanco", "300", "gasolina", "12800", "153000","Manual");
+("/images/sandero.jpg","Dacia", "Sandero", "2023", "Negro", "91", "Gasolina", "14720", "0", "Manual"),
+("/images/ccorsa.jpg","Opel", "Corsa", "2015", "Gris", "90", "Gasolina", "7950", "142000", "Manual"),
+("/images/megane.webp","Renault", "Megane", "2015", "Blanco", "115", "Gasolina", "9600", "102000","Manual"),
+("/images/golf.jpg","Volkswagen", "Golf GTE", "2016", "Negro", "204", "Hibrido(Gasolina)", "16500", "209000","Manual"),
+("/images/audi.jpg","Audi", "A4", "2007", "Blanco", "300", "Gasolina", "12800", "153000","Manual");
 
 
 --

@@ -161,9 +161,13 @@
             </div>
 
             <div class="form-item">
-                <label for="combustible">Tipo de Combustible:</label>
-                <input type="text" name="combustible" id="combustible" value="<?= $_SESSION["combustible"] ?>">
-                <span id="errorCombus" class="error"></span>
+                <label for="combustible">Combustible:</label>
+                <select name="combustible" id="combustible">
+                    <option value="Gasolina" <?= $_SESSION["combustible"] === 'Gasolina' ? 'selected' : '' ?>>Gasolina</option>
+                    <option value="Diesel" <?= $_SESSION["combustible"] === 'Diesel' ? 'selected' : '' ?>>Diesel</option>
+                    <option value="Hibrido" <?= $_SESSION["combustible"] === 'Hibrido' ? 'selected' : '' ?>>Hibrido</option>
+                    <option value="Electrico" <?= $_SESSION["combustible"] === 'Electrico' ? 'selected' : '' ?>>Electrico</option>
+                </select>
             </div>
 
             <div class="form-item">
@@ -174,8 +178,10 @@
 
             <div class="form-item">
                 <label for="cambio">Tipo de Cambio:</label>
-                <input type="text" name="cambio" id="cambio" value="<?= $_SESSION["cambio"] ?>">
-                <span id="errorCambio" class="error"></span>
+                <select name="cambio" id="cambio">
+                    <option value="Manual" <?= $_SESSION["cambio"] === 'Manual' ? 'selected' : '' ?>>Manual</option>
+                    <option value="Automatico" <?= $_SESSION["cambio"] === 'Automatico' ? 'selected' : '' ?>>Automático</option>
+                </select>
             </div>
 
             <div class="form-item">

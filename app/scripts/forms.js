@@ -205,13 +205,6 @@ function validar_y_enviar_datos(){
 
         alert(errorMessage);
     }
-
-
-
-
-
-
-
 }
 
 

@@ -7,26 +7,28 @@ $db = Database::getInstance();
 
 if(isset($_POST['submit'])){
     unset($_POST['submit']);
-        
-        $datos['imagen']= "/images/coche-predeterminado.webp";
+
+        $datos['imagen'] = "/images/coche-predeterminado.webp";
         $datos['marca'] = $_POST['marca'];
         $datos['modelo'] = $_POST['modelo'];
-        $datos['anno'] = $_POST['anno'];
-        $datos['color'] = $_POST['color'];
-        $datos['caballos'] = $_POST['caballos'];
-        $datos['combustible'] = $_POST['combustible'];
         $datos['precio'] = $_POST['precio'];
+        $datos['color'] = $_POST['color'];
         $datos['kilometros'] = $_POST['kilometros'];
         $datos['cambio'] = $_POST['cambio'];
-
-        $coche_añadido_con_exito = $db->registrar_coche($datos); }
-        if($coche_añadido_con_exito){
-            header('Location: catalogo.php'); 
-        }
+        $datos['anno'] = $_POST['anno'];
+        $datos['combustible'] = $_POST['combustible'];
+        $datos['caballos'] = $_POST['caballos'];
+        // Luego, almacena $password en la base de datos
         
+        $error = $db->registrar_coche($datos);
 
-    
+        if(!isset($error)){
+            header('Location:catalogo.php');
+        }
 
+        // Hacemos algo con el error
+        echo $error;
+}
 ?>
 
 <!DOCTYPE html>
@@ -44,31 +46,36 @@ if(isset($_POST['submit'])){
 <div class="register-container">
     <h1>Añadir Coche</h1>
 
-    <form method="POST" action="">
+    <form method="POST" action="" onsubmit="validar_y_enviar_coches()">
 
         <div class="form-item">
             <label for="marca">Marca:</label>
-            <input type="text" name="marca" id="marca" required>
+            <input type="text" name="marca" id="marca" >
+            <span id="errorMarca" class="error"></span>
         </div>
 
         <div class="form-item">
             <label for="modelo">Modelo:</label>
-            <input type="text" name="modelo" id="modelo" required>
+            <input type="text" name="modelo" id="modelo" >
+            <span id="errorModelo" class="error"></span>
         </div>
 
         <div class="form-item">
             <label for="anno">Año:</label>
-            <input type="int" name="anno" id="anno" required>
+            <input type="int" name="anno" id="anno" >
+            <span id="errorAnno" class="error"></span>
         </div>
 
         <div class="form-item">
             <label for="color">Color:</label>
-            <input type="text" name="color" id="color" required>
+            <input type="text" name="color" id="color" >
+            <span id="errorColor" class="error"></span>
         </div>
 
         <div class="form-item">
             <label for="caballos">Caballos:</label>
-            <input type="text" name="caballos" id="caballos" required>
+            <input type="text" name="caballos" id="caballos" >
+            <span id="errorCaballos" class="error"></span>
         </div>
 
         <div class="form-item">
@@ -83,12 +90,14 @@ if(isset($_POST['submit'])){
 
         <div class="form-item">
             <label for="precio">Precio:</label>
-            <input type="text" name="precio" id="precio" required>
+            <input type="text" name="precio" id="precio" >
+            <span id="errorPrecio" class="error"></span>
         </div>
 
         <div class="form-item">
             <label for="kilometros">Kilometros:</label>
-            <input type="text" name="kilometros" id="kilometros" required>
+            <input type="text" name="kilometros" id="kilometros" >
+            <span id="errorKilometros" class="error"></span>
         </div>
 
         <div class="form-item">
@@ -106,7 +115,7 @@ if(isset($_POST['submit'])){
         </form>
         -->
 
-        <button id="button" type="submit" name="submit">Añadir vehiculo</button>
+        <button id="button" type="submit" name="submit" onclick="validar_y_enviar_coches()">Añadir vehiculo</button>
 
     </form>
 </div>

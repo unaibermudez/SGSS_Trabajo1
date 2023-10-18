@@ -147,11 +147,9 @@ class Database{
     
     public function registrar_coche($datos){
        
-        $sql_ins = "INSERT INTO coches (imagen, marca, modelo, anno, color, caballos,combustible, precio, kilometros,cambio) 
-        VALUES ('{$datos['imagen']}','{$datos['marca']}', '{$datos['modelo']}', '{$datos['anno']}', '{$datos['color']}', '{$datos['caballos']}', '{$datos['combustible']}', '{$datos['precio']}', '{$datos['kilometros']}', '{$datos['cambio']}')";
+        $sql_ins = "INSERT INTO coches (imagen, marca, modelo, anno, color, caballos,combustible, precio, kilometros,cambio) VALUES ('{$datos['imagen']}','{$datos['marca']}', '{$datos['modelo']}', '{$datos['anno']}', '{$datos['color']}', '{$datos['caballos']}', '{$datos['combustible']}', '{$datos['precio']}', '{$datos['kilometros']}', '{$datos['cambio']}')";
       
         $res = $this->send_query_db($sql_ins);
-        return true;
     }
 
     public function eliminar_coche($datos) {

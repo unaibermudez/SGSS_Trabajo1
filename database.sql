@@ -22,7 +22,8 @@ SET time_zone = "+00:00";
 --
 
 -- --------------------------------------------------------
-
+DROP TABLE usuarios;
+DROP TABLE coches;
 --
 -- Estructura de tabla para la tabla `usuarios`
 --

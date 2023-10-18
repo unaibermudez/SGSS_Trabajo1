@@ -92,10 +92,10 @@ if(isset($_POST['submit'])){
         </div>
 
         <div class="form-item">
-            <label for="cambio">Cambio:</label>
-            <select>
-                <option value="Manual">Manual</option>
-                <option value="Automático">Automático</option>
+            <label for="cambio">Tipo de Cambio:</label>
+            <select name="cambio" id="cambio">
+                <option value="Manual" <?= $_SESSION["cambio"] === 'Manual' ? 'selected' : '' ?>>Manual</option>
+                <option value="Automatico" <?= $_SESSION["cambio"] === 'Automatico' ? 'selected' : '' ?>>Automático</option>
             </select>
         </div>
         <!--

@@ -37,8 +37,11 @@
         if(!empty($_POST['password']) && !empty($_POST['password2']) && $_POST['password'] == $_POST['password2']){
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
             $hay_cambios = true;
-        }else{
+        }elseif (!empty($_POST['password']) && !empty($_POST['password2']) && $_POST['password'] != $_POST['password2']) {
             echo '<script>alert("La contraseña no se ha cambiado porque no coinciden")</script>';
+        }elseif(empty($_POST['password']) && !empty($_POST['password2']) || !empty($_POST['password']) && empty($_POST['password2'])){
+            echo '<script>alert("La contraseña no se ha cambiado porque no coinciden")</script>';
+        }else{
             $password = $_SESSION['password'];
         }
 

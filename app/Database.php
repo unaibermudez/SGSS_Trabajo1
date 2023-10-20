@@ -57,7 +57,17 @@ class Database{
 
     public function modificar_datos_usuario($sql) {
         // Verifica si el arreglo de datos no está vacío y que el ID sea válido
-        $this->send_query_db($sql);
+        if(strcmp($datos['username'], "") != 0){
+            // El username no es un string vacío
+            if($this->existe_nombre_usuario($datos['username'])){
+                echo '<script>alert("Ya existe el nombre de usuario, por favor introduce otro")</script>';
+            }else{
+                $this->send_query_db($sql);
+            }
+        }else{
+            return "ERROR: el nombre de usuario no puede ser una cadena vacía";
+
+        }
     }
 
     public function modificar_datos_coche($sql) {

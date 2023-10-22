@@ -29,6 +29,7 @@
         
         if(!empty($_POST['username'])){
             $nombre = $_POST['username'];
+            $usernameCambiado = true;
             $hay_cambios = true;
         }else{
             $nombre = $_SESSION['username'];
@@ -80,13 +81,26 @@
             $nombre_apellidos = $_SESSION['nombre_apellidos'];
         }
 
-        if($hay_cambios && !$db->existe_nombre_usuario($nombre)){
-            $sql = "UPDATE usuarios SET username = '$nombre' , password = '$password' , email = '$email' , dni = '$dni' , telf = '$telf' , fecha_nacimiento = '$fecha_nacimiento' , nombre_apellidos = '$nombre_apellidos' WHERE username = '$id'";
-            $res = $db->modificar_datos_usuario($sql);
-            $_SESSION['username'] = $nombre;
-            header('Location:usuario.php');
-        }else{
-            echo '<script>alert("Ya existe el nombre de usuario, por favor introduce otro")</script>'; 
+        if(!$hay_cambios){
+            header('Location:Usuario.php');
+        }
+        else{
+            if($usernameCambiado){
+                if($db->existe_nombre_usuario($nombre)){
+                    echo '<script>alert("Ya existe el nombre de usuario, por favor introduce otro")</script>';
+                }
+                else{
+                    $sql = "UPDATE usuarios SET  username = '$nombre', password = '$password', email = '$email', dni = '$dni', telf = '$telf', fecha_nacimiento = '$fecha_nacimiento', nombre_apellidos = '$nombre_apellidos' WHERE username = '$id'";
+                    $res = $db->modificar_datos_usuario($sql);
+                    $_SESSION['username'] = $nombre;
+                    header('Location: usuario.php');
+                }
+            }
+            else{
+                $sql = "UPDATE usuarios SET password = '$password', email = '$email', dni = '$dni', telf = '$telf', fecha_nacimiento = '$fecha_nacimiento', nombre_apellidos = '$nombre_apellidos' WHERE username = '$id'";
+                $res = $db->modificar_datos_usuario($sql);
+                header('Location: usuario.php');
+            }
         }
     }
 ?>
@@ -111,25 +125,25 @@
 
             <div class="form-item">
                 <label for="username">Cambiar username:</label>
-                <input type="text" name="username" id="username" value="<?= $_SESSION["username"] ?>">
+                <input type="text" name="username" id="username" placeholder="<?= $_SESSION["username"] ?>">
                 <span id="errorUsername" class="error"></span>
             </div>
 
             <div class="form-item">
                 <label for="nombre_apellidos">Cambiar Nombre y Apellidos:</label>
-                <input type="text" name="nombre_apellidos" id="nombre_apellidos" value="<?= $_SESSION["nombre_apellidos"] ?>">
+                <input type="text" name="nombre_apellidos" id="nombre_apellidos" placeholder="<?= $_SESSION["nombre_apellidos"] ?>">
                 <span id="errorNombreApellido" class="error"></span>
             </div>
 
             <div class="form-item">
                 <label for="dni">Cambiar DNI:</label>
-                <input type="text" name="dni" id="dni" value="<?= $_SESSION["dni"] ?>">
+                <input type="text" name="dni" id="dni" placeholder="<?= $_SESSION["dni"] ?>">
                 <span id="errorDNI" class="error"></span>
             </div>
 
             <div class="form-item">
                 <label for="telf">Cambiar Teléfono:</label>
-                <input type="text" name="telf" id="telf" value="<?= $_SESSION["telf"] ?>">
+                <input type="text" name="telf" id="telf" placeholder="<?= $_SESSION["telf"] ?>">
                 <span id="errorTelf" class="error"></span>
             </div>
 
@@ -140,7 +154,7 @@
 
             <div class="form-item">
                 <label for="email">Cambiar Email:</label>
-                <input type="email" name="email" id="email" value="<?= $_SESSION["email"] ?>">
+                <input type="email" name="email" id="email" placeholder="<?= $_SESSION["email"] ?>">
                 <span id="errorMail" class="error"></span>
             </div>
 

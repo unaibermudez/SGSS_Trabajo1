@@ -80,13 +80,13 @@
             $nombre_apellidos = $_SESSION['nombre_apellidos'];
         }
 
-        if($hay_cambios){
+        if($hay_cambios && !$db->existe_nombre_usuario($nombre)){
             $sql = "UPDATE usuarios SET username = '$nombre' , password = '$password' , email = '$email' , dni = '$dni' , telf = '$telf' , fecha_nacimiento = '$fecha_nacimiento' , nombre_apellidos = '$nombre_apellidos' WHERE username = '$id'";
             $res = $db->modificar_datos_usuario($sql);
             $_SESSION['username'] = $nombre;
             header('Location:usuario.php');
         }else{
-            header('Location:usuario.php');
+            echo '<script>alert("Ya existe el nombre de usuario, por favor introduce otro")</script>'; 
         }
     }
 ?>

@@ -34,6 +34,7 @@ CREATE TABLE `usuarios` (
   `telf` int(9) NOT NULL,
   `fecha_nacimiento` date NOT NULL,
   `email` text NOT NULL,
+  `salt` text NOT NULL,
   `password` text NOT NULL,
   PRIMARY KEY (`id_usuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -62,8 +63,8 @@ CREATE TABLE `coches` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id_usuario`, `username`, `nombre_apellidos`, `dni`, `telf`, `fecha_nacimiento`, `email`, `password`) VALUES
-('0', 'admin', 'unai bermudez', '00000000A', '777777777', '2002-09-29', 'admin@gmail.com', '$2y$10$E7YLZSh/IZhI4GnFNGom3eG3gtK4CLCP2T7gCyV3EnctxXQnFSxNG');
+INSERT INTO `usuarios` (`id_usuario`, `username`, `nombre_apellidos`, `dni`, `telf`, `fecha_nacimiento`, `email`, `salt`, `password`) VALUES
+('0', 'admin', 'unai bermudez', '00000000A', '777777777', '2002-09-29', 'admin@gmail.com', 'abcde12345', '$2y$10$E7YLZSh/IZhI4GnFNGom3eG3gtK4CLCP2T7gCyV3EnctxXQnFSxNG');
 
 
 

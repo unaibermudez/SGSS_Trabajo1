@@ -51,10 +51,7 @@
             <a href="https://twitter.com" target="_blank"><img src="/images/twitter.svg" alt="Twitter" width="40" height="40"></a>
         </div>
     </div>
-    </section>
-
-
-    
+    </section>    
 </body>
 </html>
 

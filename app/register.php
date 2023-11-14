@@ -9,13 +9,17 @@
         unset($_POST['submit']);
     
         if(strcmp($_POST['password'], $_POST['password2']) == 0){
+            // Generar un salt aleatorio
+            $salt = bin2hex(random_bytes(16));
+
             $datos['username'] = $_POST['username'];
             $datos['nombre_apellidos'] = $_POST['nombre_apellidos'];
             $datos['dni'] = $_POST['dni'];
             $datos['telf'] = $_POST['telf'];
             $datos['fecha_nacimiento'] = $_POST['fecha_nacimiento'];
             $datos['email'] = $_POST['email'];
-            $datos['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $datos['salt'] = $salt;
+            $datos['password'] = password_hash($salt . $_POST['password'], PASSWORD_DEFAULT);
             // Luego, almacena $password en la base de datos
             
     

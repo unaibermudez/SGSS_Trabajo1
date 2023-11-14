@@ -33,27 +33,32 @@ class Database{
 
     public function comprobar_identidad($user, $pass){
         // TODO: Validar datos antes de realizar peticiones
-        
-        $sql = "SELECT password FROM usuarios WHERE username='$user'";
+    
+        $sql = "SELECT password, salt FROM usuarios WHERE username='$user'";
         $result = mysqli_query($this->conn, $sql);
-
+    
         if (!$result) {
             die("Error en la consulta: " . mysqli_error($this->conn));
         }
-
+    
         $row = mysqli_fetch_assoc($result);
-
+    
         if (!$row) {
             return false; // El usuario no existe
         }
-
-        // Luego, comparamos la contraseña proporcionada con la contraseña almacenada en la base de datos
-        if (password_verify($pass, $row['password'])) {
+    
+        // Obtener el "salt" almacenado en la base de datos
+        $salt_from_db = $row['salt'];
+    
+        // Verificar si las contraseñas coinciden usando password_verify
+        if (password_verify($salt_from_db . $pass, $row['password'])) {
             return true; // Contraseña válida, inicio de sesión exitoso
         } else {
             return false; // Contraseña incorrecta
         }
     }
+    
+    
 
     public function modificar_datos_usuario($sql) {
         // Verifica si el arreglo de datos no está vacío y que el ID sea válido
@@ -132,7 +137,7 @@ class Database{
 
         }
 
-        $sql_ins = "INSERT INTO usuarios (username, nombre_apellidos, dni, telf, fecha_nacimiento, email, password) VALUES ('{$datos['username']}', '{$datos['nombre_apellidos']}', '{$datos['dni']}', '{$datos['telf']}', '{$datos['fecha_nacimiento']}', '{$datos['email']}', '{$datos['password']}')";
+        $sql_ins = "INSERT INTO usuarios (username, nombre_apellidos, dni, telf, fecha_nacimiento, email, salt, password) VALUES ('{$datos['username']}', '{$datos['nombre_apellidos']}', '{$datos['dni']}', '{$datos['telf']}', '{$datos['fecha_nacimiento']}', '{$datos['email']}', '{$datos['salt']}', '{$datos['password']}')";
       
         $res = $this->send_query_db($sql_ins);
     }

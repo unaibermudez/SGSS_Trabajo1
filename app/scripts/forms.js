@@ -21,6 +21,8 @@ function validar_y_enviar_datos(){
     let button  = document.getElementById('button') 
     let errorMessage = ""
 
+
+
     // Tomamos los elementos de output para los errores
     let errUser     = document.getElementById('errorUsername') 
     let errNomApe   = document.getElementById('errorNombreApellido') 
@@ -203,13 +205,6 @@ function validar_y_enviar_datos(){
 
         alert(errorMessage);
     }
-
-
-
-
-
-
-
 }
 
 

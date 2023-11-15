@@ -1,5 +1,5 @@
 /* Reset some default styles */
-body, h1, h2, p, input, button {
+body, h1, h2, p, input, select, button {
     margin: 0;
     padding: 0;
     font-size: 1rem; /* Adjust the font size as needed */
@@ -38,6 +38,7 @@ body {
     margin-bottom: 10px;
 }
 
+.register-container select,
 .register-container input {
     width: 90%;
     padding: 10px;
@@ -45,6 +46,21 @@ body {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
+.register-container select {
+    /* Add styles for the select element */
+    background-color: #fff;
+    color: #333;
+    appearance: none; /* Remove default dropdown arrow (for modern browsers) */
+    -webkit-appearance: none; /* Remove default dropdown arrow (for WebKit browsers) */
+    padding: 10px;
+}
+
+/* Style the select when it's focused */
+.register-container select:focus {
+    border: 1px solid #1e63ec;
+}
+
 
 .register-container button {
     background-color: #1e63ec;
@@ -54,6 +70,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
+    margin-top: 30px;
 }
 
 .register-container button:hover {
@@ -75,7 +92,24 @@ body {
 
 .form-item label,
 .form-item input,
+.form-item select,
 .form-item span {
     display: block;
     margin-bottom: 20px; /* Add spacing between elements if needed */
+}
+
+/* Center the select element horizontally */
+.form-item select {
+    /* Add styles for the select element */
+    background-color: #fff;
+    color: #333;
+    appearance: none; /* Remove default dropdown arrow (for modern browsers) */
+    -webkit-appearance: none; /* Remove default dropdown arrow (for WebKit browsers) */
+    padding: 10px;
+    margin: 0 auto; /* Center horizontally */
+}
+
+/* Center the contents of the form-item div */
+.form-item {
+    text-align: center; /* Center the contents horizontally */
 }

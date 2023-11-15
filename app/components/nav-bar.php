@@ -28,7 +28,7 @@
         <ul class="menu">
             <?php if ($usuario_iniciado): ?>
                     <!-- Mostrar nombre de usuario y enlace de cierre de sesión si el usuario ha iniciado sesión -->
-                    <li  class="user-info"><a href="/perfil.php"><?= $_SESSION["username"] ?> </a></li>
+                    <li><a href="usuario.php"><?= $_SESSION["username"] ?> </a></li>
                 <?php else: ?>
                     <!-- Mostrar enlaces de inicio de sesión y registro si el usuario no ha iniciado sesión -->
                     <li><a href="login.php">Iniciar Sesión</a></li>

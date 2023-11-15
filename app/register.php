@@ -9,13 +9,17 @@
         unset($_POST['submit']);
     
         if(strcmp($_POST['password'], $_POST['password2']) == 0){
+            // Generar un salt aleatorio
+            $salt = bin2hex(random_bytes(16));
+
             $datos['username'] = $_POST['username'];
             $datos['nombre_apellidos'] = $_POST['nombre_apellidos'];
             $datos['dni'] = $_POST['dni'];
             $datos['telf'] = $_POST['telf'];
             $datos['fecha_nacimiento'] = $_POST['fecha_nacimiento'];
             $datos['email'] = $_POST['email'];
-            $datos['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT);
+            $datos['salt'] = $salt;
+            $datos['password'] = password_hash($salt . $_POST['password'], PASSWORD_DEFAULT);
             // Luego, almacena $password en la base de datos
             
     
@@ -40,7 +44,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - MotorCity Dealership</title>
-     <link rel="stylesheet" href="/styles/register.css">  <!-- Include your CSS file for styling -->
+    <link rel="stylesheet" href="/styles/register.css">  <!-- Include your CSS file for styling -->
 </head>
 <body>
     <!-- Incluimos la barra del menú -->
@@ -59,19 +63,19 @@
 
             <div class="form-item">
                 <label for="nombre_apellidos">Nombre y Apellidos:</label>
-                <input type="text" name="nombre_apellidos" id="nombre_apellidos" required>
+                <input type="text" name="nombre_apellidos" id="nombre_apellidos" placeholder= "Ej. Mikel Egaña"required>
                 <span id="errorNombreApellido" class="error"></span>
             </div>
 
             <div class="form-item">
                 <label for="dni">DNI:</label>
-                <input type="text" name="dni" id="dni" required>
+                <input type="text" name="dni" id="dni" placeholder="Ej. 11111111Z "required>
                 <span id="errorDNI" class="error"></span>
             </div>
 
             <div class="form-item">
                 <label for="telf">Teléfono:</label>
-                <input type="text" name="telf" id="telf" required>
+                <input type="text" name="telf" id="telf" placeholder="Ej. 946014024"required>
                 <span id="errorTelf" class="error"></span>
             </div>
 
@@ -82,7 +86,7 @@
 
             <div class="form-item">
                 <label for="email">Email:</label>
-                <input type="email" name="email" id="email" required>
+                <input type="email" name="email" id="email" placeholder="Ej. mikel.egana@ehu.eus" required>
                 <span id="errorMail" class="error"></span>
             </div>
 

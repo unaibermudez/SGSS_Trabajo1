@@ -10,7 +10,7 @@ header {
     color: #fff;
     text-align: center;
     padding: 20px 0;
-    padding-top: 120px;
+    padding-top: 100px;
 }
 
 /* Center align the header text */
@@ -34,7 +34,7 @@ header h1 {
     border-radius: 5px;
     padding: 20px;
     text-align: center;
-    width: 300px;
+    width: 450px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -81,4 +81,55 @@ header h1 {
 .vista a {
     color: #1e63ec;
     text-decoration: none;
+}
+/* Add your custom CSS */
+.profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.user-info {
+    font-size: 16px;
+    text-align: left;
+}
+
+.buttons {
+    text-align: center;
+}
+
+#modify-button{
+    background-color: #0077B5; /* LinkedIn blue color */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+}
+#logout-button{
+    background-color: #f01818; /* LinkedIn blue color */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+#logout-button:hover{
+    background-color: #eb5656; /* LinkedIn blue color */
+ 
+}
+#modify-button:hover{
+    background-color: #005580; /* Darker shade on hover */
 }

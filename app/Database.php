@@ -23,6 +23,10 @@ class Database{
 
     }
 
+    public function getConnection() {
+        return $this->conn;
+    }
+
     public static function getInstance(){
         if(!isset(self::$instance)){
             self::$instance = new database();
@@ -34,8 +38,10 @@ class Database{
     public function comprobar_identidad($user, $pass){
         // TODO: Validar datos antes de realizar peticiones
     
-        $sql = "SELECT password, salt FROM usuarios WHERE username='$user'";
-        $result = mysqli_query($this->conn, $sql);
+        $stmt = $this->conn->prepare("SELECT password, salt FROM usuarios WHERE username=?");
+        $stmt->bind_param("s", $user);
+        $stmt->execute();   
+        $result = $stmt->get_result();
     
         if (!$result) {
             die("Error en la consulta: " . mysqli_error($this->conn));

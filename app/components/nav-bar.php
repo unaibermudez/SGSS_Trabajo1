@@ -9,7 +9,7 @@
     if (isset($_SESSION["user"]) && $_SESSION["user"] === "yes") {
         $usuario_iniciado = true;
     }
-    ?>
+
 ?>
 
 <nav class="navbar">

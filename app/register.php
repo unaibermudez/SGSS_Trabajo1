@@ -1,14 +1,15 @@
 <?php
     session_start();
-
+    
     header('Content-Type: text/html; charset=utf-8');
     require('Database.php');
     $db = Database::getInstance();
-    
-    if(isset($_POST['submit'])){
+    $conn = $db->getConnection();
+
+    if (isset($_POST['submit'])) {
         unset($_POST['submit']);
-    
-        if(strcmp($_POST['password'], $_POST['password2']) == 0){
+
+        if (strcmp($_POST['password'], $_POST['password2']) == 0) {
             // Generar un salt aleatorio
             $salt = bin2hex(random_bytes(16));
 
@@ -19,24 +20,35 @@
             $datos['fecha_nacimiento'] = $_POST['fecha_nacimiento'];
             $datos['email'] = $_POST['email'];
             $datos['salt'] = $salt;
-            $datos['password'] = password_hash($salt . $_POST['password'], PASSWORD_DEFAULT);
-            // Luego, almacena $password en la base de datos
-            
-    
-            $error = $db->registrar_usuario($datos);
-    
-            if(!isset($error)){
+
+            // Utilizar sentencia preparada
+            $stmt = $conn->prepare("INSERT INTO usuarios (username, nombre_apellidos, dni, telf, fecha_nacimiento, email, salt, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+
+            // Generar hash seguro de la contraseña
+            $hashedPassword = password_hash($salt . $_POST['password'], PASSWORD_DEFAULT);
+
+            // Vincular parámetros
+            $stmt->bind_param("ssssssss", $datos['username'], $datos['nombre_apellidos'], $datos['dni'], $datos['telf'], $datos['fecha_nacimiento'], $datos['email'], $datos['salt'], $hashedPassword);
+
+            // Ejecutar la sentencia preparada
+            $stmt->execute();
+
+            if ($stmt->affected_rows > 0) {
+                // Éxito
                 header('Location:login.php');
+            } else {
+                // Error en la inserción
+                echo "Error al registrar el usuario.";
             }
-    
-            // Hacemos algo con el error
-            echo $error;
-    
-        }else{
+
+            // Cerrar la sentencia preparada
+            $stmt->close();
+        } else {
             echo "ERROR: las contraseñas no coinciden";
         }
     }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

@@ -34,7 +34,6 @@
     
     <section class="car-cards">
         <?php
-        session_start();
         $id = $_SESSION['username'];
         $datos = $db->obtener_datos_usuario($id);
         $_SESSION['id_usuario'] = $datos['id_usuario'];

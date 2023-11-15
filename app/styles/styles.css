@@ -8,7 +8,6 @@ body, h1, h2, p, ul {
 /* Set a background color and font for the entire page */
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f4f4f4;
     color: #333;
     line-height: 1.6;
 }
@@ -78,84 +77,52 @@ nav ul li {
     background-color: #153b87;
 }
 
-/* Style the about section */
-#about {
-    background-color: #fff;
-    padding: 2rem 0;
-    text-align: center;
-}
-
-#about h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-}
-
-#about p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-}
-
-/* Style the services section */
+/* Style the service section */
 #services {
     background-color: #f4f4f4;
-    padding: 2rem 0;
+    padding: 40px 0;
     text-align: center;
 }
-
+  
 #services h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    font-size: 28px;
+    color: #333;
 }
-
+  
 #services ul {
     list-style-type: none;
+    padding: 0;
+}
+  
+#services li {
+    font-size: 18px;
+    margin: 10px 0;
 }
 
-#services ul li {
-    font-size: 1.2rem;
-    margin: 1rem 0;
-}
-
-/* Style the footer */
-footer {
-    background-color: #333;
-    color: #fff;
-    padding: 2rem 0;
+/* Style the about section */
+#about {
+    background-color: rgb(158, 158, 158);
+    padding: 40px 0;
     text-align: center;
 }
-
-/* Animation for text */
-@keyframes fadeInUp {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  
+#about h2 {
+    font-size: 28px;
+    color: #333;
+}
+  
+#about p {
+    font-size: 16px;
+    color: #666;
 }
 
-/* Apply animations to text elements */
-.animate-text {
-    animation: fadeInUp 1s ease-out;
+.social-icons {
+    display: flex;
+    justify-content: center; /* Horizontally center the icons */
+    align-items: center;    /* Vertically center the icons */
+    margin-top: 30px;
 }
 
-/* Animation for the button */
-@keyframes scaleIn {
-    0% {
-        transform: scale(0.8);
-        opacity: 0;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
+.social-icons a {
+    margin: 0 10px; /* Adjust the margin between icons if needed */
 }
-
-/* Apply animation to the button */
-.animate-button {
-    animation: scaleIn 0.5s ease-out 1s; /* Add a delay of 1 second */
-}
-
-

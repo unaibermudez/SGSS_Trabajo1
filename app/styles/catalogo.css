@@ -11,7 +11,7 @@ header {
     color: #fff;
     text-align: center;
     padding: 20px 0;
-    padding-top: 120px;
+    padding-top: 100px;
 }
 
 /* Center align the header text */
@@ -45,10 +45,12 @@ header h1 {
     flex: 40%; /* Set the width of the image div to 40% */
     max-width: 400px; /* Limit the maximum width of the image */
     padding: 20px; /* Add some spacing around the image */
+    justify-content: center;
+    align-items: center;
 }
 
 .car-image img {
-    max-width: 100%;
+    width: 400px;
     height: auto;
     border-radius: 5px; /* Rounded corners on the image */
 }
@@ -72,6 +74,20 @@ header h1 {
     margin-bottom: 10px;
 }
 
+.car-price button{
+    background-color: #1e63ec;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.car-price button:hover{
+    background-color: #153b87;
+}
+
 /* Style car details table */
 .car-details table {
     width: 100%;
@@ -87,4 +103,49 @@ header h1 {
 
 .car-details table tr td:not(:last-child) {
     border-right: none; /* Remove right border for the last column */
+}
+
+/* Add your custom CSS */
+.edit-button {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.edit-button button {
+    background-color: #0077B5; /* LinkedIn blue color */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.edit-button button:hover {
+    background-color: #005580; /* Darker shade on hover */
+}
+
+
+/* Add your custom CSS */
+.add-car-button {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.add-car-button a {
+    display: inline-block;
+    background-color: #0077B5; /* LinkedIn blue color */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 36px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.add-car-button a:hover {
+    background-color: #005580; /* Darker shade on hover */
 }

@@ -1,6 +1,6 @@
 <?php
-    // Verificar si se ha enviado el formulario
-if(isset($_POST['submit'])){
+
+if (isset($_POST['submit'])) {
     // Incluir el archivo de la clase Database
     require('Database.php');
 
@@ -11,15 +11,22 @@ if(isset($_POST['submit'])){
     // Crear una instancia de la clase Database
     $db = Database::getInstance();
 
-    // Llamar al método para iniciar sesión
-    if($db->comprobar_identidad($username, $password)){
+    // Llamar al método para comprobar la identidad
+    $inicio_sesion_exitoso = $db->comprobar_identidad($username, $password);
+
+    if ($inicio_sesion_exitoso) {
         // Inicio de sesión exitoso, redireccionar o mostrar un mensaje de éxito
+        session_start();
         header('Location: index.php'); // Reemplaza 'dashboard.php' con la página a la que deseas redireccionar
+        $_SESSION["user"] = "yes";
+        $_SESSION["username"] = $username; // Configura el nombre del usuario en una variable de sesión
         exit;
     } else {
-        // Inicio de sesión fallido, mostrar un mensaje de error
-        echo "Inicio de sesión fallido. Verifica tus credenciales.";
+        // Si la sesión no se inicia correctamente, muestra un mensaje de alerta
+        echo '<script>alert("Usuario y/o contraseña incorrectos")</script>';
     }
+
+    
 }
 ?>
 
@@ -30,7 +37,6 @@ if(isset($_POST['submit'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - MotorCity Dealership</title>
     <link rel="stylesheet" href="/styles/login.css"> <!-- Include your CSS file for styling -->
-    
 </head>
 <body>
 
@@ -39,16 +45,21 @@ if(isset($_POST['submit'])){
     <div class="login-container">
         <h1>Iniciar Sesión</h1>
         
-        <form action="index.php" method="POST">
+        <form action="" method="POST">
             <label for="username">Nombre de Usuario:</label>
             <input type="username" id="username" name="username" required>
 
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
-
-            <button type="submit" name="submit">Login</button>
+            
+            <button id="button" type="submit" name="submit">Login</button>
         </form>
+       
         <p>Don't have an account? <a href="register.php">Register</a></p>
     </div>
+
 </body>
 </html>
+
+
+

@@ -10,7 +10,8 @@
                 
                 $datos['id_coche'] = $_POST['id_coche'];
         
-                $error = $db->eliminar_coche($datos); }
+                $error = $db->eliminar_coche($datos); 
+    }
 ?>
                     
 <!DOCTYPE html>
@@ -33,7 +34,12 @@
     
     <section class="car-cards">
         <?php
-        $result= $db->obtener_coches();
+        session_start();
+        $id = $_SESSION['username'];
+        $datos = $db->obtener_datos_usuario($id);
+        $_SESSION['id_usuario'] = $datos['id_usuario'];
+        $result = $db->obtener_coches();
+        
         if ($result->num_rows > 0) {
             // Recorre los resultados y muestra las tarjetas de coches
             while ($row = $result->fetch_assoc()) {
@@ -58,19 +64,25 @@
                 echo '                </tr>';
                 echo '            </table>';
                 echo '        </div>';
-                echo '        <div class="edit-button">';
-                echo '            <form action="ModificarCoche.php" method="POST">';
-                echo '                <input type="hidden" name="car_id" value="' . $row["id_coche"] . '">';
-                echo '                <button type="submit">Editar Datos</button>';
-                echo '            </form>';
-                echo '        </div>';
+        
+                // Verifica si el id_usuario es 0 antes de mostrar el botón de editar
+                if (isset($_SESSION['id_usuario']) && $_SESSION['id_usuario'] == 0) {
+                    echo '        <div class="edit-button">';
+                    echo '            <form action="ModificarCoche.php" method="POST">';
+                    echo '                <input type="hidden" name="car_id" value="' . $row["id_coche"] . '">';
+                    echo '                <button type="submit">Editar Datos</button>';
+                    echo '            </form>';
+                    echo '        </div>';
+                }
+        
                 echo '    </div>';
                 echo '</div>';
-            }     
+            }
         } else {
             echo "No se encontraron coches en la base de datos.";
         }
         ?>
+        
     </section>
     <div class="add-car-button">
     <a href="/registrarCoche.php">AÑADIR COCHE</a>

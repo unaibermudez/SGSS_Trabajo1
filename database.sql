@@ -64,7 +64,7 @@ CREATE TABLE `coches` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `username`, `nombre_apellidos`, `dni`, `telf`, `fecha_nacimiento`, `email`, `salt`, `password`) VALUES
-('0', 'admin', 'unai bermudez', '00000000A', '777777777', '2002-09-29', 'admin@gmail.com', 'abcde12345', '$2y$10$E7YLZSh/IZhI4GnFNGom3eG3gtK4CLCP2T7gCyV3EnctxXQnFSxNG');
+('0', 'admin', 'unai bermudez', '00000000A', '777777777', '2002-09-29', 'admin@gmail.com', '60b1da9d7b233b55f5d06f6c922e4024', '$2y$10$c2WsgIiL457thTml7aO1reRs/Xy.bQsNNjHv.IoKgtZWbB1f9dUvG');
 
 
 

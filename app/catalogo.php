@@ -1,6 +1,8 @@
 <?php
     session_start();
 
+    header('X-Frame-Options: DENY');
+
     header('Content-Type: text/html; charset=utf-8');
     require('Database.php');
     $db = Database::getInstance();

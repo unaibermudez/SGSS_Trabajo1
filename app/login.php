@@ -1,5 +1,7 @@
 <?php
 
+header('X-Frame-Options: DENY');
+
 if (isset($_POST['submit'])) {
     // Incluir el archivo de la clase Database
     require('Database.php');

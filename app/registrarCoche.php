@@ -59,6 +59,7 @@ if(isset($_POST['submit'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'none';">
     <title>Registrar Coche</title>
     <link rel="stylesheet" href="/styles/register.css">  <!-- Incluye tu archivo CSS para el estilo -->
 </head>

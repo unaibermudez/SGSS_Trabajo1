@@ -1,7 +1,5 @@
 <link rel="stylesheet" href="/styles/nav-bar.css">
 <?php
-    session_start();
-
     // Inicializa $usuario_iniciado como false por defecto
     $usuario_iniciado = false;
     

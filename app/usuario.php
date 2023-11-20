@@ -19,7 +19,6 @@
 <html>
 <head>
     <title>User - MotorCity Dealership</title>
-    <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'none';">
     <link rel="stylesheet" href="/styles/usuario.css"> <!-- Include your CSS file -->
     <link rel="stylesheet" href="/styles/nav-bar.css">
 </head>

@@ -117,7 +117,6 @@
 <html>
 <head>
     <title>Modifify Car - MotorCity Dealership</title>
-    <meta http-equiv="Content-Security-Policy" content="frame-ancestors 'none';">
     <link rel="stylesheet" href="/styles/modificar_coche.css"> <!-- Include your CSS file -->
     <link rel="stylesheet" href="/styles/nav-bar.css">
 </head>

@@ -1,7 +1,5 @@
 <?php
 
-    session_start();
-
     header('X-Frame-Options: DENY');
     
     require('Database.php');

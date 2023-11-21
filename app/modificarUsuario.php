@@ -28,6 +28,12 @@
 
     if(isset($_POST['submit'])){
 
+        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            // Token CSRF inválido, manejar el error (puede ser un intento CSRF)
+            echo '<script>alert("Error de seguridad. Intento de CSRF detectado.")</script>';
+            exit;
+        }
+
         $hay_cambios = false;
         
         if(!empty($_POST['username'])){
@@ -172,6 +178,8 @@
                 <label for="password2">Confirmar password:</label>
                 <input type="password" name="password2" id="password2">
             </div>
+
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
 
             <button id="button" type="submit" name="submit" onclick="$db->modificar_datos_usuario($datos, $_SESSION['id_user'])">Guardar Cambios</button>
 

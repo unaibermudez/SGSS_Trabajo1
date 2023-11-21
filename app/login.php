@@ -1,34 +1,40 @@
 <?php
+session_start();
 
 header('X-Frame-Options: DENY');
 
 if (isset($_POST['submit'])) {
-    // Incluir el archivo de la clase Database
+    // Verificar el token CSRF
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        // Token CSRF inválido, manejar el error (puede ser un intento CSRF)
+        echo '<script>alert("Error de seguridad. Intento de CSRF detectado.")</script>';
+        exit;
+    }
+
+    // Resto del código para procesar el formulario
     require('Database.php');
 
-    // Recoger los valores del formulario
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Crear una instancia de la clase Database
     $db = Database::getInstance();
 
-    // Llamar al método para comprobar la identidad
     $inicio_sesion_exitoso = $db->comprobar_identidad($username, $password);
 
     if ($inicio_sesion_exitoso) {
-        // Inicio de sesión exitoso, redireccionar o mostrar un mensaje de éxito
         session_start();
-        header('Location: index.php'); // Reemplaza 'dashboard.php' con la página a la que deseas redireccionar
+        header('Location: index.php');
         $_SESSION["user"] = "yes";
-        $_SESSION["username"] = $username; // Configura el nombre del usuario en una variable de sesión
+        $_SESSION["username"] = $username;
         exit;
     } else {
-        // Si la sesión no se inicia correctamente, muestra un mensaje de alerta
         echo '<script>alert("Usuario y/o contraseña incorrectos")</script>';
     }
+}
 
-    
+// Generar o renovar el token CSRF y guardarlo en la sesión
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 }
 ?>
 
@@ -39,11 +45,10 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; form-action 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' https://apis.google.com;">
     <title>Login - MotorCity Dealership</title>
-    <link rel="stylesheet" href="/styles/login.css"> <!-- Include your CSS file for styling -->
+    <link rel="stylesheet" href="/styles/login.css">
 </head>
 <body>
 
-    <!-- Incluimos la barra del menú -->
     <?php require_once("components/nav-bar.php")?>
     <div class="login-container">
         <h1>Iniciar Sesión</h1>
@@ -55,6 +60,9 @@ if (isset($_POST['submit'])) {
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
             
+            <!-- Campo oculto para el token CSRF -->
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+
             <button id="button" type="submit" name="submit">Login</button>
         </form>
        
@@ -63,6 +71,8 @@ if (isset($_POST['submit'])) {
 
 </body>
 </html>
+
+
 
 
 

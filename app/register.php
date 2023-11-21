@@ -1,16 +1,26 @@
 <?php
-    session_start();
+session_start();
 
-    header('X-Frame-Options: DENY');
-    
-    header('Content-Type: text/html; charset=utf-8');
-    require('Database.php');
-    $db = Database::getInstance();
-    $conn = $db->getConnection();
+header('X-Frame-Options: DENY');
 
-    if (isset($_POST['submit'])) {
-        unset($_POST['submit']);
+header('Content-Type: text/html; charset=utf-8');
+require('Database.php');
+$db = Database::getInstance();
+$conn = $db->getConnection();
 
+if (isset($_POST['submit'])) {
+    unset($_POST['submit']);
+
+    // Verificar el token CSRF
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        // Token CSRF inválido, manejar el error (puede ser un intento CSRF)
+        echo '<script>alert("Error de seguridad. Intento de CSRF detectado.")</script>';
+        exit;
+    }
+
+    if($db->existe_nombre_usuario($_POST['username'])){
+        echo '<script>alert("Ya existe el nombre de usuario, por favor introduce otro")</script>';
+    }else{
         if (strcmp($_POST['password'], $_POST['password2']) == 0) {
             // Generar un salt aleatorio
             $salt = bin2hex(random_bytes(16));
@@ -45,12 +55,17 @@
 
             // Cerrar la sentencia preparada
             $stmt->close();
-        } else {
+            } else {
             echo "ERROR: las contraseñas no coinciden";
         }
     }
-?>
+}
 
+// Generar o renovar el token CSRF y guardarlo en la sesión
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -59,10 +74,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; form-action 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' https://apis.google.com;">
     <title>Register - MotorCity Dealership</title>
-    <link rel="stylesheet" href="/styles/register.css">  <!-- Include your CSS file for styling -->
+    <link rel="stylesheet" href="/styles/register.css">
 </head>
 <body>
-    <!-- Incluimos la barra del menú -->
     <?php require_once("components/nav-bar.php")?>
 
     <div class="register-container">
@@ -78,19 +92,19 @@
 
             <div class="form-item">
                 <label for="nombre_apellidos">Nombre y Apellidos:</label>
-                <input type="text" name="nombre_apellidos" id="nombre_apellidos" placeholder= "Ej. Mikel Egaña"required>
+                <input type="text" name="nombre_apellidos" id="nombre_apellidos" placeholder= "Ej. Mikel Egaña" required>
                 <span id="errorNombreApellido" class="error"></span>
             </div>
 
             <div class="form-item">
                 <label for="dni">DNI:</label>
-                <input type="text" name="dni" id="dni" placeholder="Ej. 11111111Z "required>
+                <input type="text" name="dni" id="dni" placeholder="Ej. 11111111Z " required>
                 <span id="errorDNI" class="error"></span>
             </div>
 
             <div class="form-item">
                 <label for="telf">Teléfono:</label>
-                <input type="text" name="telf" id="telf" placeholder="Ej. 946014024"required>
+                <input type="text" name="telf" id="telf" placeholder="Ej. 946014024" required>
                 <span id="errorTelf" class="error"></span>
             </div>
 
@@ -116,6 +130,9 @@
                 <input type="password" name="password2" id="password2" required>
             </div>
 
+            <!-- Campo oculto para el token CSRF -->
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+
             <button id="button" type="submit" name="submit" onclick="validar_y_enviar_datos()">Register</button>
 
         </form>
@@ -126,4 +143,5 @@
     <script defer src="scripts/forms.js"></script>
 </body>
 </html>
+
 

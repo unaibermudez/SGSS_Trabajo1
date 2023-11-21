@@ -1,28 +1,44 @@
 <?php
 session_start();
+
 header('X-Frame-Options: DENY');
+
 header('Content-Type: text/html; charset=utf-8');
 require('Database.php');
 $db = Database::getInstance();
+$conn = $db->getConnection();
 
-function sanitizeInput($data) {
-    // Utiliza filter_var con FILTER_SANITIZE_STRING para limpiar las cadenas
+function sanitizeInput($data)
+{
     return filter_var($data, FILTER_SANITIZE_STRING);
 }
 
-function validateInt($data) {
-    // Validación específica para enteros
+function validateInt($data)
+{
     return filter_var($data, FILTER_VALIDATE_INT);
 }
 
-if(isset($_POST['submit'])){
+// Generar o renovar el token CSRF y guardarlo en la sesión
+if (!isset($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
+if (isset($_POST['submit'])) {
     unset($_POST['submit']);
+
+    // Verificar el token CSRF
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+        // Token CSRF inválido, manejar el error (puede ser un intento CSRF)
+        echo '<script>alert("Error de seguridad. Intento de CSRF detectado.")</script>';
+        exit;
+    }
 
     // Sanitiza todos los datos de entrada
     $datos['imagen'] = "/images/coche-predeterminado.webp";
     $datos['marca'] = sanitizeInput($_POST['marca']);
     $datos['modelo'] = sanitizeInput($_POST['modelo']);
     $datos['precio'] = sanitizeInput($_POST['precio']);
+    $datos['combustible'] = sanitizeInput($_POST['combustible']);
     $datos['color'] = sanitizeInput($_POST['color']);
     $datos['kilometros'] = sanitizeInput($_POST['kilometros']);
     $datos['cambio'] = sanitizeInput($_POST['cambio']);
@@ -32,24 +48,21 @@ if(isset($_POST['submit'])){
     $datos['caballos'] = filter_var($_POST['caballos'], FILTER_VALIDATE_INT);
 
     // Verificar si la validación fue exitosa
-    if ($datos['anno'] === false || $datos['anno'] === null) {
-        // Manejar el error para 'anno'
+    if ($datos['anno'] === false || $datos['anno'] === null || $datos['caballos'] === false || $datos['caballos'] === null) {
+        // Manejar el error para 'anno' o 'caballos'
+        echo "Error en la validación de datos numéricos.";
+        exit;
     }
 
-    if ($datos['caballos'] === false || $datos['caballos'] === null) {
-    // Manejar el error para 'caballos'
-    }
-
-
-    // Luego, almacena $password en la base de datos
+    // Luego, almacena los datos del coche en la base de datos
     $error = $db->registrar_coche($datos);
 
-    if(!isset($error)){
-        header('Location:catalogo.php');
+    if (!isset($error)) {
+        header('Location: catalogo.php');
         exit();
     }
 
-    // Hacemos algo con el error
+    // Hacer algo con el error
     echo $error;
 }
 ?>
@@ -73,6 +86,8 @@ if(isset($_POST['submit'])){
 
     <form method="POST" action="" onsubmit="return validar_y_enviar_coches()">
 
+        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+        
         <div class="form-item">
             <label for="marca">Marca:</label>
             <input type="text" name="marca" id="marca" value="<?php echo isset($_POST['marca']) ? htmlspecialchars($_POST['marca']) : ''; ?>">

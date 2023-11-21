@@ -32,6 +32,12 @@
     //modificar esto:
     if(isset($_POST['submit'])){
 
+        if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            // Token CSRF inválido, manejar el error (puede ser un intento CSRF)
+            echo '<script>alert("Error de seguridad. Intento de CSRF detectado.")</script>';
+            exit;
+        }
+
         $hay_cambios = false;
         
         if(!empty($_POST['marca'])){
@@ -193,6 +199,8 @@
                 <input type="number" name="kilometros" id="kilometros" value="<?= $_SESSION["kilometros"] ?>">
                 <span id="errorKilometros" class="error"></span>
             </div>
+
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
 
             <div class="buttons">
                 <button id="button" type="submit" name="submit" onclick="$db->modificar_datos_coche($datos, $_SESSION['car_id'])">Guardar Cambios</button>

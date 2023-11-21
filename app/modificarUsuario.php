@@ -111,6 +111,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; form-action 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' https://apis.google.com;">
     <title>Modify User - MotorCity Dealership</title>
     <link rel="stylesheet" href="/styles/modificar_usuario.css"> <!-- Include your CSS file -->
     <link rel="stylesheet" href="/styles/nav-bar.css">

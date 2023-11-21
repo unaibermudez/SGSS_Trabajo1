@@ -60,6 +60,7 @@ if(isset($_POST['submit'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; form-action 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' https://apis.google.com;">
     <title>Registrar Coche</title>
     <link rel="stylesheet" href="/styles/register.css">  <!-- Incluye tu archivo CSS para el estilo -->
 </head>

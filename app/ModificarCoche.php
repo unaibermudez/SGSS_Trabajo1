@@ -1,5 +1,7 @@
 <?php
 
+    // Suprimir el encabezado X-Powered-By
+    header_remove('X-Powered-By');
     header('X-Frame-Options: DENY');
     
     require('Database.php');

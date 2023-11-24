@@ -2,7 +2,10 @@
 
     // Suprimir el encabezado X-Powered-By
     header_remove('X-Powered-By');
+    header_remove('Server');
     header('X-Frame-Options: DENY');
+
+    header('X-Content-Type-Options: nosniff');
     
     require('Database.php');
     $db = Database::getInstance();

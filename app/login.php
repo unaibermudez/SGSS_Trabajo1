@@ -5,7 +5,10 @@ session_start();
 
 // Suprimir el encabezado X-Powered-By
 header_remove('X-Powered-By');
+header_remove('Server');
 header('X-Frame-Options: DENY');
+
+header('X-Content-Type-Options: nosniff');
 
 if (isset($_POST['submit'])) {
     // Verificar el token CSRF

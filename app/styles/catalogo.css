@@ -1,0 +1,151 @@
+/* Reset some default styles */
+body, h1, h2, p, ul, li {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the header */
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    padding-top: 100px;
+}
+
+/* Center align the header text */
+header h1 {
+    font-size: 2rem;
+}
+/* Style the car cards section */
+.car-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the cards horizontally */
+    align-items: flex-start; /* Align cards to the top */
+    padding: 20px;
+}
+
+
+
+/* Style individual car cards */
+.car-card {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex; /* Use flexbox for card layout */
+    width: 65%;
+    margin: 0 10px 20px 10px; /* Add margin to create spacing between cards */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Style car image on the left */
+.car-image {
+    flex: 40%; /* Set the width of the image div to 40% */
+    max-width: 400px; /* Limit the maximum width of the image */
+    padding: 20px; /* Add some spacing around the image */
+    justify-content: center;
+    align-items: center;
+}
+
+.car-image img {
+    width: 400px;
+    height: auto;
+    border-radius: 5px; /* Rounded corners on the image */
+}
+
+/* Style car information on the right */
+.car-info {
+    flex-grow: 1; /* Allow the right side to expand to fill available space */
+    padding: 20px;
+}
+
+/* Style car title (brand, model, year) */
+.car-title h2 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+/* Style car price */
+.car-price p {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.car-price button{
+    background-color: #1e63ec;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.car-price button:hover{
+    background-color: #153b87;
+}
+
+/* Style car details table */
+.car-details table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 100px;
+}
+
+.car-details table tr td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.car-details table tr td:not(:last-child) {
+    border-right: none; /* Remove right border for the last column */
+}
+
+/* Add your custom CSS */
+.edit-button {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.edit-button button {
+    background-color: #0077B5; /* LinkedIn blue color */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.edit-button button:hover {
+    background-color: #005580; /* Darker shade on hover */
+}
+
+
+/* Add your custom CSS */
+.add-car-button {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.add-car-button a {
+    display: inline-block;
+    background-color: #0077B5; /* LinkedIn blue color */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 36px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.add-car-button a:hover {
+    background-color: #005580; /* Darker shade on hover */
+}

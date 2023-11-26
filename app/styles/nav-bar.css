@@ -1,0 +1,66 @@
+/* Reset some default styles */
+body, ul, li, a {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+/* Navigation Bar Styles */
+.navbar {
+    background-color: #00072d;
+    color: #fff;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    position: fixed; /* Make the navigation bar fixed at the top */
+    top: 0; /* Position it at the top of the viewport */
+    width: 100%; /* Make it full width */
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+.left-elements {
+    display: flex;
+    align-items: center;
+}
+
+.right-elements ul {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Push right-aligned elements to the right edge */
+}
+
+.menu li {
+    margin-right: 30px;
+    display: inline-block;
+}
+
+.menu li:last-child {
+    margin-right: 50px;
+}
+
+/* Logo Styles */
+.logo {
+    text-decoration: none;
+    color: #fff; /* White text color for the logo */
+    margin-right: 1rem; /* Add a small right margin to the logo */
+}
+
+.logo img {
+    height: 60px; /* Increase the height of the logo */
+}
+
+.menu a {
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px; /* Increase the font size */
+    transition: color 0.3s;
+}
+
+.menu a:hover {
+    color: #1e63ec;
+}
